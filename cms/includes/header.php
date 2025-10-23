@@ -52,6 +52,7 @@ if (!isset($_SESSION['user_id'])) {
                             <li><a href="<?php echo URLROOT; ?>cms/home_gallery.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'home_gallery.php') ? 'active' : ''; ?>">Gallery</a></li>
                             <li><a href="<?php echo URLROOT; ?>cms/home_processes.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'home_processes.php') ? 'active' : ''; ?>">Processes</a></li>
                             <li><a href="<?php echo URLROOT; ?>cms/home_contact.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'home_contact.php') ? 'active' : ''; ?>">Contact</a></li>
+                            <li><a href="<?php echo URLROOT; ?>cms/home_blog.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'home_blog.php') ? 'active' : ''; ?>">Blog</a></li>
                         </ul>
                     </li>
                     <li class="mb-2">
