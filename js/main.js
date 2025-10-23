@@ -126,7 +126,7 @@ $(window).scroll(function(){
     });
 
     $('ul li:has(ul)');
-    $(document).ready(function() {
+    /* $(document).ready(function() {
     var e = '<div class="cmt_floting_customsett">'+
                 '<a href="https://support.cymolthemes.com/" class="tmtheme_fbar_icons"><i class="fa fa-headphones"></i><span>Support</span></a>'+
                 '<a href="https://www.cymolthemes.com/" class="tmtheme_fbar_icons"><i class="themifyicon themifyicon ti-pencil"></i><span>Customization</span></a>'+
@@ -135,7 +135,7 @@ $(window).scroll(function(){
             '</div>';
 
     $('body').append(e);
-}); 
+});  */
 
 
 /*------------------------------------------------------------------------------*/

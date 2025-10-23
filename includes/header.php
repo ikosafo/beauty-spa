@@ -1,6 +1,19 @@
 <?php
 // Determine current page for menu highlighting
 $current_page = basename($_SERVER['PHP_SELF'], '.php');
+
+// Define active class logic for main menu and subpages
+$is_home_active = ($current_page === 'index') ? 'class="active"' : '';
+$is_about_active = ($current_page === 'about') ? 'class="active"' : '';
+$is_services_active = in_array($current_page, [
+    'services', 'massage-relaxation', 'healing-therapeutic-massage', 'corporate-massage', 'hydro-therapy-sauna',
+    'body-skin-care', 'body-exfoliating', 'natural-body-contouring', 'facial-therapy-skin-tag-removal',
+    'foot-nail-care', 'medical-feet-care', 'beauty-therapy',
+    'hair-services', 'hair-dressing-braids-locks', 'weave-on-hair-installation', 'additional-offerings'
+]) ? 'class="active"' : '';
+$is_training_active = ($current_page === 'training-school') ? 'class="active"' : '';
+$is_shop_active = ($current_page === 'shop') ? 'class="active"' : '';
+$is_connect_active = ($current_page === 'connect') ? 'class="active"' : '';
 ?>
 
 <!DOCTYPE html>
@@ -8,11 +21,11 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="HTML5 Template, Sylin - Beauty salon and Spa HTML Template,html template, wordpress theme, Fyna - Beauty salon and Spa WordPress Theme, Sylin - Beauty Salon and Spa HTML Template, unlimited colors available, ui/ux, ui/ux design, best html template, html template, html, woocommerce, shopify, prestashop, eCommerce, react js, react template, JavaScript, best CSS theme,css3, elementor theme, latest premium themes 2023, latest premium templates 2024, Preyan Technosys Pvt.Ltd, cymol themes, themetech mount, Web 3.0, multi-theme, website theme and template, woocommerce, bootstrap template, web templates, responsive theme, beauty parlor, beauty salon, beauty shop, cosmetic store, spa and salon, hospitality, spa salon, haircut salon, barber shop, beauty salon, nails art, hairstyle, hair stylist, makeup artist, hair dresser, beauty tips, beauty care">
+    <meta name="keywords" content="HTML5 Template, Sylin - Beauty salon and Spa HTML Template, html template, wordpress theme, Fyna - Beauty salon and Spa WordPress Theme, Sylin - Beauty Salon and Spa HTML Template, unlimited colors available, ui/ux, ui/ux design, best html template, html template, html, woocommerce, shopify, prestashop, eCommerce, react js, react template, JavaScript, best CSS theme, css3, elementor theme, latest premium themes 2023, latest premium templates 2024, Preyan Technosys Pvt.Ltd, cymol themes, themetech mount, Web 3.0, multi-theme, website theme and template, woocommerce, bootstrap template, web templates, responsive theme, beauty parlor, beauty salon, beauty shop, cosmetic store, spa and salon, hospitality, spa salon, haircut salon, barber shop, beauty salon, nails art, hairstyle, hair stylist, makeup artist, hair dresser, beauty tips, beauty care">
     <meta name="description" content="Sylin - Beauty salon and Spa HTML Template">
     <meta name="author" content="https://www.themetechmount.com/">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Sylin Spa &#8211; Beauty Saloon and Spa</title>
+    <title>Golden View Therapeutic Clinique & SPA</title>
 
     <!-- favicon icon -->
     <link rel="shortcut icon" href="<?php echo htmlspecialchars(URLROOT . '/cms/' . $logo_path); ?>">
@@ -114,13 +127,13 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
                                             </div>
                                             <nav id="menu" class="menu">
                                                 <ul class="dropdown">
-                                                    <li <?php echo ($current_page === 'index' || $current_page === 'home') ? 'class="active"' : ''; ?>>
+                                                    <li <?php echo $is_home_active; ?>>
                                                         <a href="/home">Home</a>
                                                     </li>
-                                                    <li <?php echo ($current_page === 'about') ? 'class="active"' : ''; ?>>
+                                                    <li <?php echo $is_about_active; ?>>
                                                         <a href="/about">About Us</a>
                                                     </li>
-                                                    <li <?php echo ($current_page === 'services') ? 'class="active"' : ''; ?>>
+                                                    <li <?php echo $is_services_active; ?>>
                                                         <a href="/services">Services</a>
                                                         <ul>
                                                             <li><a href="/services/massage-relaxation">Massage & Relaxation</a>
@@ -152,13 +165,13 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
                                                             <li><a href="/services/additional-offerings">Additional Offerings</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li <?php echo ($current_page === 'training-school') ? 'class="active"' : ''; ?>>
+                                                    <li <?php echo $is_training_active; ?>>
                                                         <a href="/training-school">Training School</a>
                                                     </li>
-                                                    <li <?php echo ($current_page === 'shop') ? 'class="active"' : ''; ?>>
+                                                    <li <?php echo $is_shop_active; ?>>
                                                         <a href="/shop">Shop</a>
                                                     </li>
-                                                    <li <?php echo ($current_page === 'connect') ? 'class="active"' : ''; ?>>
+                                                    <li <?php echo $is_connect_active; ?>>
                                                         <a href="/connect">Connect</a>
                                                     </li>
                                                 </ul>
