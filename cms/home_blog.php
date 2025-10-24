@@ -364,7 +364,7 @@ include 'includes/header.php';
                             <label class="block text-gray-700 font-medium mb-1" for="post_image<?php echo $i; ?>">Image (PNG, JPG, JPEG, max 2MB)</label>
                             <input type="file" name="post_image<?php echo $i; ?>" id="post_image<?php echo $i; ?>" accept="image/png,image/jpeg,image/jpg" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
                             <?php if (!empty($posts[$i]['image'])): ?>
-                                <img id="post_image<?php echo $i; ?>-preview" src="<?php echo htmlspecialchars(URLROOT . '/' . $posts[$i]['image']); ?>" alt="Image Preview" class="mt-2 max-w-xs h-auto">
+                                <img id="post_image<?php echo $i; ?>-preview" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $posts[$i]['image']); ?>" alt="Image Preview" class="mt-2 max-w-xs h-auto">
                             <?php else: ?>
                                 <img id="post_image<?php echo $i; ?>-preview" src="" alt="Image Preview" class="mt-2 max-w-xs h-auto hidden">
                             <?php endif; ?>

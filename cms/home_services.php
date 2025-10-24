@@ -320,7 +320,7 @@ include 'includes/header.php';
                             <label class="block text-gray-700 font-medium mb-1" for="box<?php echo $i; ?>_image">Image (PNG, JPG, JPEG, max 2MB)</label>
                             <input type="file" name="box<?php echo $i; ?>_image" id="box<?php echo $i; ?>_image" accept="image/png,image/jpeg,image/jpg" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
                             <?php if (!empty($boxes[$i]['image'])): ?>
-                                <img id="box<?php echo $i; ?>_image-preview" src="<?php echo htmlspecialchars(URLROOT . '/' . $boxes[$i]['image']); ?>" alt="Image Preview" class="mt-2 max-w-xs h-auto">
+                                <img id="box<?php echo $i; ?>_image-preview" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $boxes[$i]['image']); ?>" alt="Image Preview" class="mt-2 max-w-xs h-auto">
                             <?php else: ?>
                                 <img id="box<?php echo $i; ?>_image-preview" src="" alt="Image Preview" class="mt-2 max-w-xs h-auto hidden">
                             <?php endif; ?>
