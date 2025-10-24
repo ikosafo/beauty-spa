@@ -59,10 +59,10 @@ if (!isset($_SESSION['user_id'])) {
                         <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">About Us Sections</a>
                         <ul class="submenu pl-4 text-sm">
                             <li><a href="<?php echo URLROOT; ?>cms/about.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'about.php') ? 'active' : ''; ?>">About</a></li>
-                            <li><a href="<?php echo URLROOT; ?>cms/clients.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'clients.php') ? 'active' : ''; ?>">Clients</a></li>
+                           <!--  <li><a href="<?php echo URLROOT; ?>cms/clients.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'clients.php') ? 'active' : ''; ?>">Clients</a></li>
                             <li><a href="<?php echo URLROOT; ?>cms/team.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'team.php') ? 'active' : ''; ?>">Team</a></li>
                             <li><a href="<?php echo URLROOT; ?>cms/our_story.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'our_story.php') ? 'active' : ''; ?>">Our Story</a></li>
-                            <li><a href="<?php echo URLROOT; ?>cms/testimonials.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'testimonials.php') ? 'active' : ''; ?>">Testimonials</a></li>
+                            <li><a href="<?php echo URLROOT; ?>cms/testimonials.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'testimonials.php') ? 'active' : ''; ?>">Testimonials</a></li> -->
                         </ul>
                     </li>
                     <li class="mb-2">
@@ -72,9 +72,15 @@ if (!isset($_SESSION['user_id'])) {
                         </ul>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">Property Management</a>
+                        <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">Training School</a>
                         <ul class="submenu pl-4 text-sm">
-                            <li><a href="<?php echo URLROOT; ?>cms/property.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'property.php') ? 'active' : ''; ?>">Property</a></li>
+                            <li><a href="<?php echo URLROOT; ?>cms/training_school.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'training_school.php') ? 'active' : ''; ?>">Training School</a></li>
+                        </ul>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">Shop</a>
+                        <ul class="submenu pl-4 text-sm">
+                            <li><a href="<?php echo URLROOT; ?>cms/shop.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'shop.php') ? 'active' : ''; ?>">Shop</a></li>
                         </ul>
                     </li>
                     <li class="mt-6">
