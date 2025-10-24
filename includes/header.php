@@ -1,19 +1,42 @@
 <?php
+require_once 'config.php';
+
 // Determine current page for menu highlighting
 $current_page = basename($_SERVER['PHP_SELF'], '.php');
+$fragment = isset($_SERVER['REQUEST_URI']) ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_FRAGMENT) : '';
 
 // Define active class logic for main menu and subpages
 $is_home_active = ($current_page === 'index') ? 'class="active"' : '';
 $is_about_active = ($current_page === 'about') ? 'class="active"' : '';
-$is_services_active = in_array($current_page, [
-    'services', 'massage-relaxation', 'healing-therapeutic-massage', 'corporate-massage', 'hydro-therapy-sauna',
+$is_services_active = ($current_page === 'services' || in_array($fragment, [
+    'massage-relaxation', 'healing-therapeutic-massage', 'corporate-massage', 'hydro-therapy-sauna',
     'body-skin-care', 'body-exfoliating', 'natural-body-contouring', 'facial-therapy-skin-tag-removal',
     'foot-nail-care', 'medical-feet-care', 'beauty-therapy',
     'hair-services', 'hair-dressing-braids-locks', 'weave-on-hair-installation', 'additional-offerings'
-]) ? 'class="active"' : '';
+])) ? 'class="active"' : '';
 $is_training_active = ($current_page === 'training-school') ? 'class="active"' : '';
 $is_shop_active = ($current_page === 'shop') ? 'class="active"' : '';
 $is_connect_active = ($current_page === 'connect') ? 'class="active"' : '';
+
+// Contact Data
+$query = "SELECT `logo`, `address`, `working_hours`, facebook, x, linkedin, instagram FROM ws_contact WHERE id = 1";
+$result = $mysqli->query($query);
+$contact_data = $result && $result->num_rows > 0 ? $result->fetch_assoc() : [
+    'logo' => 'images/logo.png',
+    'address' => '24 Tech Roqad st Ny 10023',
+    'working_hours' => 'Mon-Sat: 9am to 6pm',
+    'facebook' => '',
+    'x' => '',
+    'linkedin' => '',
+    'instagram' => ''
+];
+// Ensure social media and working hours fields are not NULL
+$contact_data['facebook'] = $contact_data['facebook'] ?? '';
+$contact_data['x'] = $contact_data['x'] ?? '';
+$contact_data['linkedin'] = $contact_data['linkedin'] ?? '';
+$contact_data['instagram'] = $contact_data['instagram'] ?? '';
+$contact_data['working_hours'] = $contact_data['working_hours'] ?? 'Mon-Sat: 9am to 6pm';
+$logo_path = $contact_data['logo'];
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +135,7 @@ $is_connect_active = ($current_page === 'connect') ? 'class="active"' : '';
                                         <div id="site-navigation" class="site-navigation d-flex flex-row">
                                             <div class="site-branding me-auto">
                                                 <!-- site-branding -->
-                                                <a class="home-link" href="/home" title="Sylin Spa" rel="home">
+                                                <a class="home-link" href="/" title="Sylin Spa" rel="home">
                                                     <img id="logo-img" class="img-center lazyload" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $logo_path); ?>" alt="logo">
                                                 </a>
                                                 <!-- site-branding end -->                   
@@ -128,7 +151,7 @@ $is_connect_active = ($current_page === 'connect') ? 'class="active"' : '';
                                             <nav id="menu" class="menu">
                                                 <ul class="dropdown">
                                                     <li <?php echo $is_home_active; ?>>
-                                                        <a href="/home">Home</a>
+                                                        <a href="/">Home</a>
                                                     </li>
                                                     <li <?php echo $is_about_active; ?>>
                                                         <a href="/about">About Us</a>
@@ -136,33 +159,33 @@ $is_connect_active = ($current_page === 'connect') ? 'class="active"' : '';
                                                     <li <?php echo $is_services_active; ?>>
                                                         <a href="/services">Services</a>
                                                         <ul>
-                                                            <li><a href="/services/massage-relaxation">Massage & Relaxation</a>
+                                                            <li><a href="/services#massage-relaxation">Massage & Relaxation</a>
                                                                 <ul>
-                                                                    <li><a href="/services/massage-relaxation/healing-therapeutic-massage">Healing Therapeutic Massage</a></li>
-                                                                    <li><a href="/services/massage-relaxation/corporate-massage">Corporate Massage</a></li>
-                                                                    <li><a href="/services/massage-relaxation/hydro-therapy-sauna">Hydro Therapy / Sauna</a></li>
+                                                                    <li><a href="/services#healing-therapeutic-massage">Healing Therapeutic Massage</a></li>
+                                                                    <li><a href="/services#corporate-massage">Corporate Massage</a></li>
+                                                                    <li><a href="/services#hydro-therapy-sauna">Hydro Therapy / Sauna</a></li>
                                                                 </ul>
                                                             </li>
-                                                            <li><a href="/services/body-skin-care">Body & Skin Care</a>
+                                                            <li><a href="/services#body-skin-care">Body & Skin Care</a>
                                                                 <ul>
-                                                                    <li><a href="/services/body-skin-care/body-exfoliating">Body Exfoliating</a></li>
-                                                                    <li><a href="/services/body-skin-care/natural-body-contouring">Natural Body Contouring</a></li>
-                                                                    <li><a href="/services/body-skin-care/facial-therapy-skin-tag-removal">Facial Therapy / Skin Tag Removal</a></li>
+                                                                    <li><a href="/services#body-exfoliating">Body Exfoliating</a></li>
+                                                                    <li><a href="/services#natural-body-contouring">Natural Body Contouring</a></li>
+                                                                    <li><a href="/services#facial-therapy-skin-tag-removal">Facial Therapy / Skin Tag Removal</a></li>
                                                                 </ul>
                                                             </li>
-                                                            <li><a href="/services/foot-nail-care">Foot & Nail Care</a>
+                                                            <li><a href="/services#foot-nail-care">Foot & Nail Care</a>
                                                                 <ul>
-                                                                    <li><a href="/services/foot-nail-care/medical-feet-care">Medical Feet Care</a></li>
-                                                                    <li><a href="/services/foot-nail-care/beauty-therapy">Beauty Therapy</a></li>
+                                                                    <li><a href="/services#medical-feet-care">Medical Feet Care</a></li>
+                                                                    <li><a href="/services#beauty-therapy">Beauty Therapy</a></li>
                                                                 </ul>
                                                             </li>
-                                                            <li><a href="/services/hair-services">Hair Services</a>
+                                                            <li><a href="/services#hair-services">Hair Services</a>
                                                                 <ul>
-                                                                    <li><a href="/services/hair-services/hair-dressing-braids-locks">Hair Dressing / Braids & Locks</a></li>
-                                                                    <li><a href="/services/hair-services/weave-on-hair-installation">Weave-On & Hair Installation</a></li>
+                                                                    <li><a href="/services#hair-dressing-braids-locks">Hair Dressing / Braids & Locks</a></li>
+                                                                    <li><a href="/services#weave-on-hair-installation">Weave-On & Hair Installation</a></li>
                                                                 </ul>
                                                             </li>
-                                                            <li><a href="/services/additional-offerings">Additional Offerings</a></li>
+                                                            <li><a href="/services#additional-offerings">Additional Offerings</a></li>
                                                         </ul>
                                                     </li>
                                                     <li <?php echo $is_training_active; ?>>

@@ -207,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $errors[] = "Failed to move uploaded file for Post $i image.";
                         error_log("Failed to move uploaded file to: " . $image_path);
                     } else {
-                        $post_data[$i]['image'] = 'Uploads/blog/' . $image_filename;
+                        $post_data[$i]['image'] = 'uploads/blog/' . $image_filename;
                         error_log("Image uploaded successfully for Post $i: " . $post_data[$i]['image']);
                     }
                 }
