@@ -1,5 +1,4 @@
 <?php
-
 require_once 'config.php';
 
 // Contact Data
@@ -21,12 +20,49 @@ $contact_data['linkedin'] = $contact_data['linkedin'] ?? '';
 $contact_data['instagram'] = $contact_data['instagram'] ?? '';
 $contact_data['working_hours'] = $contact_data['working_hours'] ?? 'Mon-Sat: 9am to 6pm';
 $logo_path = $contact_data['logo'];
-
-
-
 ?>
 
-
+<style>
+    .widget-services.ttm-service-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .widget-services.ttm-service-list > li {
+        width: 48%; /* Two columns */
+        margin: 0; /* No spacing */
+        padding: 0;
+    }
+    .widget-services.ttm-service-list li a {
+        color: #f7c08a; /* Softer gold for main services */
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 1.2; /* Tight line height */
+        display: block;
+    }
+    .widget-services.ttm-service-list li a:hover {
+        text-decoration: underline;
+        color: #ffffff; /* White on hover */
+    }
+    .widget-services.ttm-service-list ul {
+        list-style: none;
+        padding-left: 10px;
+        margin: 0; /* No spacing */
+    }
+    .widget-services.ttm-service-list ul li {
+        margin: 8px !important; /* No spacing */
+        padding: 0;
+    }
+    .widget-services.ttm-service-list ul li a {
+        font-size: 13px; /* Slightly smaller for sub-services */
+        color: #e0b670; /* Darker gold for sub-services */
+        line-height: 1.2; /* Tight line height */
+    }
+</style>
 
 <!--footer start-->
 <footer class="footer widget-footer clearfix">
@@ -35,7 +71,7 @@ $logo_path = $contact_data['logo'];
             <div class="row">
                 <div class="col-lg-6 col-md-7 col-sm-9 m-auto text-center">
                     <div class="footer-logo">
-                        <img id="footer-logo-img" class="img-center" src="<?php echo htmlspecialchars($logo_path); ?>" alt="Golden View Therapeutic Clinique and Spa Logo">
+                        <img id="footer-logo-img" class="img-center" src="<?php echo '/cms/'.htmlspecialchars($logo_path); ?>" alt="Golden View Therapeutic Clinique and Spa Logo">
                     </div>
                     <h4 class="widget-text ttm-textcolor-white">Stay Connected with Golden View</h4>
                     <form id="subscribe-form" class="newsletter-form" method="post" action="#" data-mailchimp="true">
@@ -64,18 +100,29 @@ $logo_path = $contact_data['logo'];
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 widget-area">
                     <div class="widget widget_text clearfix">
-                        <h3 class="widget-title">Recent News</h3>
-                        <ul class="widget-post ttm-recent-post-list">
+                        <h3 class="widget-title">Our Services</h3>
+                        <ul class="widget-services ttm-service-list">
                             <li>
-                                <a href="blog/enhancing-wellness-through-spa-treatments.html"><img src="images/blog/massage.jpg" class="lazyload" alt="Massage therapy"></a>
-                                <span class="post-date">October 10, 2025</span>
-                                <a href="blog/enhancing-wellness-through-spa-treatments.html">Enhancing Wellness Through Expert Spa Treatments</a>
+                                <ul>
+                                    <li><a href="/services#healing-therapeutic-massage">Healing Therapeutic Massage</a></li>
+                                    <li><a href="/services#corporate-massage">Corporate Massage</a></li>
+                                    <li><a href="/services#hydro-therapy-sauna">Hydro Therapy / Sauna</a></li>
+                                    <li><a href="/services#body-exfoliating">Body Exfoliating</a></li>
+                                    <li><a href="/services#natural-body-contouring">Natural Body Contouring</a></li>
+                                </ul>
                             </li>
+                           
                             <li>
-                                <a href="blog/soothing-senses-with-facials.html"><img src="images/blog/facial.jpg" class="lazyload" alt="Facial treatment"></a>
-                                <span class="post-date">October 8, 2025</span>
-                                <a href="blog/soothing-senses-with-facials.html">Soothing Your Senses with Luxurious Facials</a>
+                                <ul>
+                                    <li><a href="/services#facial-therapy-skin-tag-removal">Facial Therapy / Skin Tag Removal</a></li>
+                                    <li><a href="/services#medical-feet-care">Medical Feet Care</a></li>
+                                    <li><a href="/services#beauty-therapy">Beauty Therapy</a></li>
+                                    <li><a href="/services#hair-dressing-braids-locks">Hair Dressing / Braids & Locks</a></li>
+                                    <li><a href="/services#weave-on-hair-installation">Weave-On & Hair Installation</a></li>
+                                </ul>
                             </li>
+                            
+                           
                         </ul>
                     </div>
                 </div>
@@ -175,27 +222,26 @@ $logo_path = $contact_data['logo'];
 </a>
 <!--back-to-top end-->
 
-    </div><!-- page end -->
+</div><!-- page end -->
 
-    <!-- Javascript -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-migrate-3.4.1.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.js"></script>    
-    <script src="js/jquery-waypoints.js"></script>    
-    <script src="js/jquery-validate.js"></script> 
-    <script src="js/owl.carousel.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/numinate.min6959.js?ver=4.9.3"></script>
-    <script src="js/lazysizes.min.js"></script>
-    <script src="js/main.js"></script>
+<!-- Javascript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.4.1.min.js"></script>
+<script src="js/tether.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.js"></script>    
+<script src="js/jquery-waypoints.js"></script>    
+<script src="js/jquery-validate.js"></script> 
+<script src="js/owl.carousel.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/numinate.min6959.js?ver=4.9.3"></script>
+<script src="js/lazysizes.min.js"></script>
+<script src="js/main.js"></script>
 
-    <!-- Revolution Slider -->
-    <script src="revolution/js/revolution.tools.min.js"></script>
-    <script src="revolution/js/rs6.min.js"></script>
-    <script src="revolution/js/slider.js"></script>
-
-    <!-- Javascript end-->
+<!-- Revolution Slider -->
+<script src="revolution/js/revolution.tools.min.js"></script>
+<script src="revolution/js/rs6.min.js"></script>
+<script src="revolution/js/slider.js"></script>
+<!-- Javascript end-->
 </body>
 </html>

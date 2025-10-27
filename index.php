@@ -44,7 +44,7 @@ if (empty($slides)) {
         ],
         2 => [
             'slide_key' => 'rs-4',
-            'background_media' => 'images/slides/istockphoto-1047656636-640_adpp_is.mp4',
+            'background_media' => 'images/slides/slider-mainbg-002.jpg',
             'subtitle' => 'Best Place for',
             'heading1' => 'THE BEST TIME',
             'heading2' => 'TO RELAX WITH SYLIN',
@@ -100,7 +100,7 @@ if (empty($boxes)) {
         1 => [
             'image' => 'images/services/01.jpg',
             'title' => 'Face Massage',
-            'description' => 'To reverse the ageing effect from the skin, try our faceಸ. face hydration treatment to get a youthful glow',
+            'description' => 'To reverse the ageing effect from the skin, try our face hydration treatment to get a youthful glow',
             'icon' => 'flaticon-herbal',
             'link' => 'services-details.html',
             'box_order' => 1
@@ -135,13 +135,13 @@ if (empty($boxes)) {
 // Testimonials & Facts
 $query = "SELECT * FROM ws_testimonials WHERE id IN (1, 2, 3, 4, 5, 6, 7, 8) ORDER BY id";
 $result = $mysqli->query($query);
-$testimonial_section = []; 
+$testimonial_section = [];
 $testimonials = [];
 $facts = [];
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         if ($row['type'] === 'section') {
-            $testimonial_section = $row; 
+            $testimonial_section = $row;
         } elseif ($row['type'] === 'testimonial') {
             $testimonials[$row['item_order']] = $row;
         } else {
@@ -150,7 +150,7 @@ if ($result) {
     }
 }
 if (empty($testimonial_section)) {
-    $testimonial_section = [ 
+    $testimonial_section = [
         'subtitle' => 'Testimonials',
         'title' => 'WHAT OUR CLIENTS SAYING'
     ];
@@ -347,7 +347,6 @@ if (empty($posts)) {
             'title' => 'A Relaxation of the Senses with Their Help',
             'link' => 'blog-single.html',
             'post_order' => 2
-
         ],
         3 => [
             'image' => 'images/blog/03.jpg',
@@ -487,6 +486,19 @@ if (empty($posts)) {
             <!-- Slide 1 -->
             <rs-slide data-key="<?php echo htmlspecialchars($slides[1]['slide_key']); ?>" data-title="Slide" data-thumb="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[1]['background_media']); ?>" data-anim="ei:d;eo:d;s:d;r:0;t:slidingoverlayhorizontal;sl:d;">
                 <img src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[1]['background_media']); ?>" title="home-mainslider-bg001" width="1920" height="790" class="rev-slidebg" data-no-retina>
+                <!-- Dark Overlay Layer -->
+                <rs-layer
+                    id="slider-2-slide-3-layer-overlay"
+                    data-type="shape"
+                    data-rsp_ch="on"
+                    data-xy="x:c;y:c;"
+                    data-text="w:normal;s:20,20,12,7;l:0,0,15,9;"
+                    data-dim="w:100%;h:100%;"
+                    data-frame_0="sX:0.8;sY:0.8;"
+                    data-frame_1="st:100;sp:500;sR:100;"
+                    data-frame_999="o:0;st:w;sR:8400;"
+                    style="z-index:6;background-color:rgba(0,0,0,0.5);"
+                ></rs-layer>
                 <rs-layer
                     id="slider-2-slide-3-layer-0"
                     data-type="text"
@@ -571,6 +583,19 @@ if (empty($posts)) {
             <!-- Slide 2 -->
             <rs-slide data-key="<?php echo htmlspecialchars($slides[2]['slide_key']); ?>" data-title="Slide" data-thumb="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[2]['background_media']); ?>" data-anim="ei:d;eo:d;s:d;r:0;t:slidingoverlayhorizontal;sl:d;">
                 <img src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[2]['background_media']); ?>" title="home-mainslider-bg002" width="1920" height="790" class="rev-slidebg" data-no-retina>
+                <!-- Dark Overlay Layer -->
+                <rs-layer
+                    id="slider-2-slide-4-layer-overlay"
+                    data-type="shape"
+                    data-rsp_ch="on"
+                    data-xy="x:c;y:c;"
+                    data-text="w:normal;s:20,20,12,7;l:0,0,15,9;"
+                    data-dim="w:100%;h:100%;"
+                    data-frame_0="sX:0.8;sY:0.8;"
+                    data-frame_1="st:100;sp:500;sR:100;"
+                    data-frame_999="o:0;st:w;sR:8400;"
+                    style="z-index:6;background-color:rgba(0,0,0,0.5);"
+                ></rs-layer>
                 <rs-layer
                     id="slider-2-slide-4-layer-0"
                     data-type="text"
@@ -636,7 +661,7 @@ if (empty($posts)) {
                 <a
                     id="slider-2-slide-4-layer-7"
                     class="rs-layer ttm-btn ttm-btn-style-border ttm-btn-color-skincolor"
-                    href="<?php echo htmlspecialchars($slides[2]['button_url']); ?>" target="_self" rel="nofollow"
+                    href="<?php echo htmlspecialchars($slides[2]['button_url']); ?>" target="_blank" rel="nofollow"
                     data-type="text"
                     data-color="#fc84b4"
                     data-rsp_ch="on"
@@ -817,6 +842,9 @@ if (empty($posts)) {
     <!-- testimonial section end -->
 
     <!-- gallery-section -->
+    <!-- Include Lightbox2 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
     <section class="ttm-row gallery-section ttm-bgcolor-grey clearfix">
         <div class="gallery-title-section ttm-bgcolor-skincolor">
             <div class="container">
@@ -838,10 +866,12 @@ if (empty($posts)) {
                 <?php foreach ($images as $index => $image): ?>
                     <div class="col-md-4">
                         <div class="featured-imagebox-portfolio">
-                            <img class="img-fluid" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $image['image']); ?>" alt="gallery-image">
-                            <div class="featured-content-portfolio">
-                                <a class="ttm_prettyphoto ttm_image ttm-textcolor-skincolor ttm-bgcolor-white" title="" data-gal="" data-rel="prettyPhoto" href="<?php echo htmlspecialchars(URLROOT . '/cms/' . $image['image']); ?>"><i class="fa fa-camera"></i></a>
-                            </div>
+                            <a href="<?php echo htmlspecialchars(URLROOT . '/cms/' . $image['image']); ?>" data-lightbox="gallery" data-caption="<?php echo htmlspecialchars($gallery_section['title']); ?>">
+                                <img class="img-fluid" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $image['image']); ?>" alt="gallery-image">
+                                <div class="featured-content-portfolio">
+                                    <i class="fa fa-camera"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -849,6 +879,19 @@ if (empty($posts)) {
         </div>
     </section>
     <!-- gallery-section end -->
+
+    <!-- Include Lightbox2 JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'albumLabel': 'Image %1 of %2'
+            });
+        });
+    </script>
 
     <!-- process-section -->
     <section class="ttm-row ttm-bgcolor-grey process-section">
@@ -916,7 +959,7 @@ if (empty($posts)) {
                                         <span><?php echo htmlspecialchars($timeslot['spaces_available']); ?></span>
                                     </div>
                                     <div class="appointment-time">
-                                        <button class="ttm-btn ttm-btn-size-xs ttm-btn-style-fill ttm-btn-color-skincolor">Book Appointment</button>
+                                        <a href="<?php echo htmlspecialchars(URLROOT . '/appointment'); ?>" class="ttm-btn ttm-btn-size-xs ttm-btn-style-fill ttm-btn-color-skincolor" role="button">Book Appointment</a>
                                     </div>
                                 </li>
                             <?php endforeach; ?>
