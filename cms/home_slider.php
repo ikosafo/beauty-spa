@@ -1,5 +1,5 @@
 <?php
-// cms/slider.php
+// cms/home_slider.php
 
 require_once '../config.php';
 
@@ -49,13 +49,13 @@ if (empty($slides)) {
         ],
         2 => [
             'slide_key' => 'rs-4',
-            'background_media' => 'images/slides/istockphoto-1047656636-640_adpp_is.mp4',
+            'background_media' => 'images/slides/slider-mainbg-002.jpg',
             'subtitle' => 'Best Place for',
             'heading1' => 'THE BEST TIME',
             'heading2' => 'TO RELAX WITH SYLIN',
             'description' => 'Professional Beauty Center Since 1919.',
-            'button_text' => 'Watch Video',
-            'button_url' => 'https://youtu.be/7e90gBu4pas'
+            'button_text' => 'Explore Now',
+            'button_url' => '/services'
         ]
     ];
 }
@@ -89,19 +89,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 error_log("Validation failed for Slide $slide_id: Missing required fields");
             }
 
-            // Handle media upload
+            // Handle image upload
             if (isset($_FILES["background_media_$slide_id"]) && $_FILES["background_media_$slide_id"]['error'] !== UPLOAD_ERR_NO_FILE) {
-                $allowed_types = $slide_id == 1 ? ['image/png', 'image/jpeg', 'image/jpg'] : ['video/mp4', 'image/png', 'image/jpeg', 'image/jpg'];
-                $max_size = $slide_id == 1 ? 2 * 1024 * 1024 : 5 * 1024 * 1024; // 2MB for images, 5MB for videos
-                $upload_dir = './uploads/slider/';
+                $allowed_types = ['image/png', 'image/jpeg', 'image/jpg'];
+                $max_size = 2 * 1024 * 1024; // 2MB
+                $upload_dir = './Uploads/slider/';
                 $media_file = $_FILES["background_media_$slide_id"];
 
                 // Validate file type and size
                 if (!in_array($media_file['type'], $allowed_types)) {
-                    $errors[] = "Invalid file type for Slide $slide_id. Only " . ($slide_id == 1 ? 'PNG, JPG, JPEG' : 'MP4, PNG, JPG, JPEG') . " are allowed.";
+                    $errors[] = "Invalid file type for Slide $slide_id. Only PNG, JPG, JPEG are allowed.";
                     error_log("Invalid file type for Slide $slide_id: " . $media_file['type']);
                 } elseif ($media_file['size'] > $max_size) {
-                    $errors[] = "File size exceeds " . ($slide_id == 1 ? '2MB' : '5MB') . " limit for Slide $slide_id.";
+                    $errors[] = "File size exceeds 2MB limit for Slide $slide_id.";
                     error_log("File size too large for Slide $slide_id: " . $media_file['size']);
                 } elseif ($media_file['error'] !== UPLOAD_ERR_OK) {
                     $errors[] = "File upload error for Slide $slide_id: " . $media_file['error'];
@@ -117,8 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $errors[] = "Failed to move uploaded file for Slide $slide_id.";
                         error_log("Failed to move uploaded file to: " . $media_path);
                     } else {
-                        $background_media = 'uploads/slider/' . $media_filename;
-                        error_log("Media uploaded successfully for Slide $slide_id: " . $background_media);
+                        $background_media = 'Uploads/slider/' . $media_filename;
+                        error_log("Image uploaded successfully for Slide $slide_id: " . $background_media);
                     }
                 }
             }
@@ -218,16 +218,12 @@ include 'includes/header.php';
                         <input type="text" name="button_text_<?php echo $slide_id; ?>" id="button_text_<?php echo $slide_id; ?>" value="<?php echo htmlspecialchars($slides[$slide_id]['button_text']); ?>" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
                         <label class="block text-gray-700 font-medium mb-1" for="button_url_<?php echo $slide_id; ?>">Button URL (optional)</label>
                         <input type="text" name="button_url_<?php echo $slide_id; ?>" id="button_url_<?php echo $slide_id; ?>" value="<?php echo htmlspecialchars($slides[$slide_id]['button_url']); ?>" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
-                        <label class="block text-gray-700 font-medium mb-1" for="background_media_<?php echo $slide_id; ?>">Background Media (<?php echo $slide_id == 1 ? 'PNG, JPG, JPEG, max 2MB' : 'MP4, PNG, JPG, JPEG, max 5MB'; ?>)</label>
-                        <input type="file" name="background_media_<?php echo $slide_id; ?>" id="background_media_<?php echo $slide_id; ?>" accept="<?php echo $slide_id == 1 ? 'image/png,image/jpeg,image/jpg' : 'video/mp4,image/png,image/jpeg,image/jpg'; ?>" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <label class="block text-gray-700 font-medium mb-1" for="background_media_<?php echo $slide_id; ?>">Background Image (PNG, JPG, JPEG, max 2MB)</label>
+                        <input type="file" name="background_media_<?php echo $slide_id; ?>" id="background_media_<?php echo $slide_id; ?>" accept="image/png,image/jpeg,image/jpg" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
                         <?php if (!empty($slides[$slide_id]['background_media'])): ?>
-                            <?php if (pathinfo($slides[$slide_id]['background_media'], PATHINFO_EXTENSION) === 'mp4'): ?>
-                                <video id="media-preview-<?php echo $slide_id; ?>" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[$slide_id]['background_media']); ?>" class="mt-2 max-w-xs h-auto" controls></video>
-                            <?php else: ?>
-                                <img id="media-preview-<?php echo $slide_id; ?>" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[$slide_id]['background_media']); ?>" alt="Media Preview" class="mt-2 max-w-xs h-auto">
-                            <?php endif; ?>
+                            <img id="media-preview-<?php echo $slide_id; ?>" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[$slide_id]['background_media']); ?>" alt="Image Preview" class="mt-2 max-w-xs h-auto">
                         <?php else: ?>
-                            <img id="media-preview-<?php echo $slide_id; ?>" src="" alt="Media Preview" class="mt-2 max-w-xs h-auto hidden">
+                            <img id="media-preview-<?php echo $slide_id; ?>" src="" alt="Image Preview" class="mt-2 max-w-xs h-auto hidden">
                         <?php endif; ?>
                     </div>
                 </div>
@@ -248,7 +244,7 @@ include 'includes/header.php';
         document.getElementById('submit-button').disabled = true;
     });
 
-    // Media preview for each slide
+    // Image preview for each slide
     <?php foreach ([1, 2] as $slide_id): ?>
         document.getElementById('background_media_<?php echo $slide_id; ?>').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -256,12 +252,8 @@ include 'includes/header.php';
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    if (file.type.startsWith('video/')) {
-                        preview.outerHTML = '<video id="media-preview-<?php echo $slide_id; ?>" src="' + e.target.result + '" class="mt-2 max-w-xs h-auto" controls></video>';
-                    } else {
-                        preview.src = e.target.result;
-                        preview.classList.remove('hidden');
-                    }
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
                 };
                 reader.readAsDataURL(file);
             } else {

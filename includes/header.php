@@ -118,7 +118,7 @@ $logo_path = $contact_data['logo'];
                                                 </ul>
                                             </div>
                                             <div class="header-btn">
-                                                <a class="ttm-btn ttm-btn-size-md ttm-btn-style-fill ttm-btn-color-skincolor" href="#">Get An Appointment!</a>
+                                                <a class="ttm-btn ttm-btn-size-md ttm-btn-style-fill ttm-btn-color-skincolor" href="appointment">Get An Appointment!</a>
                                             </div>
                                         </div>
                                     </div>

@@ -569,14 +569,8 @@ if (empty($posts)) {
                 </a>
             </rs-slide>
             <!-- Slide 2 -->
-            <rs-slide data-key="<?php echo htmlspecialchars($slides[2]['slide_key']); ?>" data-title="Slide" data-anim="ei:d;eo:d;s:d;r:0;t:fade;sl:d;">
-                <img src="images/slides/transparent.png" title="home-mainslider-bg002" width="1920" height="850" class="rev-slidebg" data-no-retina>
-                <?php if (pathinfo($slides[2]['background_media'], PATHINFO_EXTENSION) === 'mp4'): ?>
-                    <rs-bgvideo
-                        data-video="w:100%;h:100%;nse:false;l:true;ptimer:false;"
-                        data-mp4="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[2]['background_media']); ?>"
-                    ></rs-bgvideo>
-                <?php endif; ?>
+            <rs-slide data-key="<?php echo htmlspecialchars($slides[2]['slide_key']); ?>" data-title="Slide" data-thumb="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[2]['background_media']); ?>" data-anim="ei:d;eo:d;s:d;r:0;t:slidingoverlayhorizontal;sl:d;">
+                <img src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[2]['background_media']); ?>" title="home-mainslider-bg002" width="1920" height="790" class="rev-slidebg" data-no-retina>
                 <rs-layer
                     id="slider-2-slide-4-layer-0"
                     data-type="text"
@@ -600,7 +594,7 @@ if (empty($posts)) {
                     data-frame_0="sX:0.8;sY:0.8;"
                     data-frame_1="e:Power4.easeOut;st:1010;sp:500;sR:1010;"
                     data-frame_999="o:0;st:w;sR:7490;"
-                    style="z-index:14;background-color:#ffffff;font-family:Roboto;"
+                    style="z-index:8;background-color:#ffffff;font-family:Roboto;"
                 ></rs-layer>
                 <rs-layer
                     id="slider-2-slide-4-layer-2"
@@ -636,50 +630,25 @@ if (empty($posts)) {
                     data-frame_0="sX:0.8;sY:0.8;"
                     data-frame_1="e:Power4.easeOut;st:1020;sp:1000;sR:1020;"
                     data-frame_999="o:0;st:w;sR:6980;"
-                    style="z-index:15;font-family:Poppins;font-style:italic;"
+                    style="z-index:12;font-family:Poppins;font-style:italic;"
                 ><?php echo htmlspecialchars($slides[2]['description']); ?>
                 </rs-layer>
-                <rs-layer
-                    id="slider-2-slide-4-layer-14"
-                    data-type="shape"
-                    data-rsp_ch="on"
-                    data-xy="x:c;y:m;"
-                    data-text="w:normal;s:20,20,12,7;l:0,0,15,9;"
-                    data-dim="w:5000px,5000px,3137px,1935px;h:800px,800px,700px,400px;"
-                    data-frame_999="o:0;st:w;sR:8700;"
-                    style="z-index:5;background-color:rgba(0,11,40,0.74);font-family:Roboto;"
-                ></rs-layer>
                 <a
-                    id="slider-2-slide-4-layer-16"
-                    class="rs-layer ttm_prettyphoto"
+                    id="slider-2-slide-4-layer-7"
+                    class="rs-layer ttm-btn ttm-btn-style-border ttm-btn-color-skincolor"
                     href="<?php echo htmlspecialchars($slides[2]['button_url']); ?>" target="_self" rel="nofollow"
                     data-type="text"
+                    data-color="#fc84b4"
                     data-rsp_ch="on"
-                    data-xy="x:r,r,c,c;xo:30px,30px,0,0;y:m;yo:177px,177px,103px,67px;"
-                    data-text="w:normal;s:18,18,15,12;l:50,50,45,35;a:center;"
-                    data-dim="w:50px,50px,45px,35px;h:50px,50px,45px,35px;"
-                    data-border="bor:50%,50%,50%,50%;"
+                    data-xy="x:r,r,c,c;xo:40px,40px,0,0;y:m;yo:163px,163px,105px,73px;"
+                    data-text="w:normal;s:15,15,14,12;l:20,20,12,10;fw:500;"
+                    data-padding="t:15,15,12,10;r:35,35,25,20;b:15,15,12,10;l:35,35,25,20;"
+                    data-border="bos:solid;boc:#fc84b4;bow:1px,1px,1px,1px;"
                     data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:1330;sp:600;sR:1330;"
-                    data-frame_999="o:0;st:w;sR:7070;"
-                    data-frame_hover="bgc:#ff68a4;bor:50%,50%,50%,50%;"
-                    style="z-index:7;background-color:#fc84b4;font-family:Roboto;margin-right: 15px;"
-                ><i class="fa fa-play"></i>
-                </a>
-                <a
-                    id="slider-2-slide-4-layer-17"
-                    class="rs-layer"
-                    href="<?php echo htmlspecialchars($slides[2]['button_url']); ?>" target="_self" rel="nofollow"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:r;xo:115px,115px,800px,493px;y:m;yo:179px,179px,74px,45px;"
-                    data-text="w:normal;s:15,15,9,5;l:25,25,15,9;fw:500;"
-                    data-vbility="t,t,f,f"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:1320;sp:600;sR:1320;"
-                    data-frame_999="o:0;st:w;sR:7080;"
-                    data-frame_hover="c:#fc84b4;"
-                    style="z-index:13;font-family:Poppins;"
+                    data-frame_1="e:Power4.easeOut;st:1100;sp:600;sR:1100;"
+                    data-frame_999="o:0;st:w;sR:7300;"
+                    data-frame_hover="c:#fff;bgc:#fc84b4;boc:#fc84b4;bos:solid;bow:1px,1px,1px,1px;"
+                    style="z-index:13;font-family:Poppins;margin-right: 15px;"
                 ><?php echo htmlspecialchars($slides[2]['button_text']); ?>
                 </a>
             </rs-slide>
