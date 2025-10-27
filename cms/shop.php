@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $errors[] = 'Failed to move uploaded file for section image.';
                     error_log('Failed to move uploaded file to: ' . $image_path);
                 } else {
-                    $section_image_data['image'] = 'Uploads/shop/' . $image_filename;
+                    $section_image_data['image'] = 'uploads/shop/' . $image_filename;
                     error_log('Section image uploaded successfully: ' . $section_image_data['image']);
                 }
             }
@@ -181,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $errors[] = "Failed to move uploaded file for Product $i image.";
                         error_log("Failed to move uploaded file to: " . $image_path);
                     } else {
-                        $product_data[$i]['product_image'] = 'Uploads/shop/' . $image_filename;
+                        $product_data[$i]['product_image'] = 'uploads/shop/' . $image_filename;
                         error_log("Product $i image uploaded successfully: " . $product_data[$i]['product_image']);
                     }
                 }
