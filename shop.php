@@ -316,13 +316,12 @@ include 'includes/header.php';
         } else {
             for (const id in cart) {
                 const item = cart[id];
-                const itemTotal = parseFloat(item.price) * parseInt(item.quantity);
+                const itemTotal = parseFloat(item.price) * parseInt(item.quantity); // Calculate total for this item
                 subtotal += itemTotal;
 
                 const li = document.createElement('li');
-                // Added a class for styling if needed
                 li.className = 'd-flex justify-content-between py-1 border-bottom'; 
-                li.innerHTML = `<span>${item.name} (x${item.quantity})</span><span>GHS ${parseFloat(item.price).toFixed(2)} ea.</span>`;
+                li.innerHTML = `<span>${item.name} (x${item.quantity})</span><span>GHS ${itemTotal.toFixed(2)}</span>`; // Show total price
                 summary.appendChild(li);
 
                 cartItemsArray.push(item); // Prepare data for PHP submission
