@@ -105,6 +105,171 @@ $about = $result && $result->num_rows > 0 ? $result->fetch_assoc() : [
         </div>
     </section>
     <!-- aboutus-section end -->
+
+    <!-- mission-vision-section -->
+    <section class="ttm-row mission-vision-section ttm-bgcolor-grey clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <div class="title-header">
+                            <h5 class="ttm-textcolor-skincolor">Our Purpose</h5>
+                            <h2 class="title">Mission & Vision</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="featured-box style2">
+                        <div class="featured-icon">
+                            <div class="ttm-icon ttm-icon_element-size-md ttm-textcolor-skincolor">
+                                <i class="flaticon-wellness"></i>
+                            </div>
+                        </div>
+                        <div class="featured-content">
+                            <div class="featured-title">
+                                <h5>Our Mission</h5>
+                            </div>
+                            <div class="featured-desc">
+                                <p>At Golden View, our mission is to provide a sanctuary of holistic wellness, where every guest experiences rejuvenation through expertly crafted therapies and natural, high-quality products. We strive to restore balance and vitality to both body and soul.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="featured-box style2">
+                        <div class="featured-icon">
+                            <div class="ttm-icon ttm-icon_element-size-md ttm-textcolor-skincolor">
+                                <i class="flaticon-spa"></i>
+                            </div>
+                        </div>
+                        <div class="featured-content">
+                            <div class="featured-title">
+                                <h5>Our Vision</h5>
+                            </div>
+                            <div class="featured-desc">
+                                <p>We envision Golden View as a global leader in wellness, inspiring transformative experiences that empower individuals to live healthier, more balanced lives. Our goal is to create serene environments where beauty, energy, and tranquility converge.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- mission-vision-section end -->
+
+    <!-- philosophy-section -->
+    <section class="ttm-row philosophy-section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <div class="title-header">
+                            <h5 class="ttm-textcolor-skincolor">Our Approach</h5>
+                            <h2 class="title">Our Philosophy</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ttm-textcolor-darkgrey text-center">
+                        <p>At Golden View, we believe wellness is a harmonious blend of mind, body, and spirit. Our philosophy centers on holistic care, using only premium, natural products to nurture your well-being. Each treatment is designed to restore balance, enhance beauty, and promote inner peace, creating a transformative experience tailored to you.</p>
+                        <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-bgcolor-skincolor mt-20" href="/services">Explore Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- philosophy-section end -->
+
+    <!-- why-choose-us-section -->
+    <section class="ttm-row why-choose-us-section ttm-bgcolor-grey clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <div class="title-header">
+                            <h5 class="ttm-textcolor-skincolor">Why Golden View</h5>
+                            <h2 class="title">What Sets Us Apart</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-space-between">
+                <div class="col-lg-3 col-md-6 col-sm-3 col-6 featured-icon-box style1 text-center res-575-w-50">
+                    <div class="featured-icon-box-inner">
+                        <div class="featured-icon">
+                            <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
+                                <i class="flaticon-expert"></i>
+                            </div>
+                        </div>
+                        <div class="featured-content">
+                            <div class="featured-title">
+                                <h5>Expert Therapists</h5>
+                            </div>
+                            <div class="featured-desc">
+                                <p>Our certified professionals deliver unparalleled care with years of expertise in holistic wellness.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-3 col-6 featured-icon-box style1 text-center res-575-w-50">
+                    <div class="featured-icon-box-inner">
+                        <div class="featured-icon">
+                            <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
+                                <i class="flaticon-natural"></i>
+                            </div>
+                        </div>
+                        <div class="featured-content">
+                            <div class="featured-title">
+                                <h5>Premium Products</h5>
+                            </div>
+                            <div class="featured-desc">
+                                <p>We use only high-quality, natural products to ensure safe and effective treatments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-3 col-6 featured-icon-box style1 text-center res-575-w-50">
+                    <div class="featured-icon-box-inner">
+                        <div class="featured-icon">
+                            <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
+                                <i class="flaticon-serenity"></i>
+                            </div>
+                        </div>
+                        <div class="featured-content">
+                            <div class="featured-title">
+                                <h5>Serene Ambiance</h5>
+                            </div>
+                            <div class="featured-desc">
+                                <p>Our tranquil environment is designed to promote relaxation and inner peace.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-3 col-6 featured-icon-box style1 text-center res-575-w-50">
+                    <div class="featured-icon-box-inner">
+                        <div class="featured-icon">
+                            <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
+                                <i class="flaticon-customized"></i>
+                            </div>
+                        </div>
+                        <div class="featured-content">
+                            <div class="featured-title">
+                                <h5>Personalized Care</h5>
+                            </div>
+                            <div class="featured-desc">
+                                <p>Every treatment is tailored to meet your unique needs and wellness goals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- why-choose-us-section end -->
 </div>
 <!--site-main end-->
 

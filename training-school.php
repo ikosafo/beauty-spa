@@ -95,7 +95,7 @@ error_log('Fetched training school data: ' . print_r(['training_section' => $tra
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title with-desc text-center clearfix">
+                    <div class="section-title with-desc text-center clearfix mt-50">
                         <div class="title-header">
                             <h5 class="ttm-textcolor-skincolor"><?php echo htmlspecialchars($training_section['subtitle']); ?></h5>
                             <h2 class="title"><?php echo htmlspecialchars($training_section['title']); ?></h2>
@@ -106,7 +106,7 @@ error_log('Fetched training school data: ' . print_r(['training_section' => $tra
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="ttm_single_image-wrapper">
+                    <div class="ttm_single_image-wrapper mb-30 res-767-mb-20">
                         <img class="img-fluid lazyload" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $training_section['image']); ?>" alt="Training School">
                     </div>
                 </div>
@@ -116,7 +116,7 @@ error_log('Fetched training school data: ' . print_r(['training_section' => $tra
                         <p>At <?php echo htmlspecialchars($training_section['title']); ?>, we offer comprehensive courses designed to equip you with the skills needed in the beauty industry. From beginner to advanced levels, our expert instructors provide hands-on training.</p>
                         <ul class="ttm-list ttm-list-style-icon ttm-list-icon-color-skincolor style3">
                             <?php foreach ($programs as $program): ?>
-                                <li><i class="fa fa-check-circle"></i><?php echo htmlspecialchars($program['program_name']); ?></li>
+                                <li><i class="fa fa-check-circle"></i><span class="ttm-list-li-content"><?php echo htmlspecialchars($program['program_name']); ?></span></li>
                             <?php endforeach; ?>
                         </ul>
                         <a class="ttm-btn ttm-btn-size-md ttm-btn-style-fill ttm-btn-color-skincolor mt-20" href="/enroll">Enroll Now!</a>
@@ -125,56 +125,64 @@ error_log('Fetched training school data: ' . print_r(['training_section' => $tra
             </div>
             <div class="row mt-50">
                 <div class="col-lg-12">
-                    <h3>Why Choose Our Academy?</h3>
-                    <p>Our training school combines theoretical knowledge with practical experience, ensuring you’re ready to excel in the beauty industry. Learn from certified professionals in a supportive environment.</p>
+                    <div class="section-title text-center">
+                        <h3>Why Choose Our Academy?</h3>
+                    </div>
+                    <p class="text-center">Our training school combines theoretical knowledge with practical experience, ensuring you’re ready to excel in the beauty industry. Learn in a supportive environment designed for success.</p>
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="featured-icon-box style1 text-center">
-                                <div class="featured-icon">
-                                    <div class="ttm-icon ttm-icon_element-size-lg">
-                                        <i class="flaticon-spa ttm-textcolor-skincolor"></i>
+                            <div class="featured-icon-box style1 text-center box-shadow">
+                                <div class="featured-icon-box-inner">
+                                    <div class="featured-icon">
+                                        <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
+                                            <i class="flaticon-spa"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="featured-content">
-                                    <div class="featured-title">
-                                        <h5>Expert Instructors</h5>
-                                    </div>
-                                    <div class="featured-desc">
-                                        <p>Learn from industry leaders with years of experience.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="featured-icon-box style1 text-center">
-                                <div class="featured-icon">
-                                    <div class="ttm-icon ttm-icon_element-size-lg">
-                                        <i class="flaticon-wellness ttm-textcolor-skincolor"></i>
-                                    </div>
-                                </div>
-                                <div class="featured-content">
-                                    <div class="featured-title">
-                                        <h5>Hands-On Training</h5>
-                                    </div>
-                                    <div class="featured-desc">
-                                        <p>Gain practical skills through real-world practice.</p>
+                                    <div class="featured-content">
+                                        <div class="featured-title">
+                                            <h5>Expert Instructors</h5>
+                                        </div>
+                                        <div class="featured-desc">
+                                            <p>Learn from industry leaders with extensive experience, guiding you to master professional techniques.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="featured-icon-box style1 text-center">
-                                <div class="featured-icon">
-                                    <div class="ttm-icon ttm-icon_element-size-lg">
-                                        <i class="flaticon-hammam ttm-textcolor-skincolor"></i>
+                            <div class="featured-icon-box style1 text-center box-shadow">
+                                <div class="featured-icon-box-inner">
+                                    <div class="featured-icon">
+                                        <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
+                                            <i class="flaticon-wellness"></i>
+                                        </div>
+                                    </div>
+                                    <div class="featured-content">
+                                        <div class="featured-title">
+                                            <h5>Hands-On Training</h5>
+                                        </div>
+                                        <div class="featured-desc">
+                                            <p>Gain practical skills through real-world practice in our state-of-the-art facilities.</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="featured-content">
-                                    <div class="featured-title">
-                                        <h5>Certification</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="featured-icon-box style1 text-center box-shadow">
+                                <div class="featured-icon-box-inner">
+                                    <div class="featured-icon">
+                                        <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
+                                            <i class="flaticon-hammam"></i>
+                                        </div>
                                     </div>
-                                    <div class="featured-desc">
-                                        <p>Earn recognized certifications upon completion.</p>
+                                    <div class="featured-content">
+                                        <div class="featured-title">
+                                            <h5>Certification</h5>
+                                        </div>
+                                        <div class="featured-desc">
+                                            <p>Earn industry-recognized certifications to launch your career with confidence.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
