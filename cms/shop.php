@@ -330,7 +330,7 @@ include 'includes/header.php';
                     <label class="block text-gray-700 font-medium mb-1" for="section_image">Image (PNG, JPG, JPEG, max 2MB)</label>
                     <input type="file" name="section_image" id="section_image" accept="image/png,image/jpeg,image/jpg" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
                     <?php if (!empty($shop_section['image'])): ?>
-                        <img id="section-image-preview" src="<?php echo htmlspecialchars(URLROOT . '/' . $shop_section['image']); ?>" alt="Section Image Preview" class="mt-2 max-w-xs h-auto">
+                        <img id="section-image-preview" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $shop_section['image']); ?>" alt="Section Image Preview" class="mt-2 max-w-xs h-auto">
                     <?php else: ?>
                         <img id="section-image-preview" src="" alt="Section Image Preview" class="mt-2 max-w-xs h-auto hidden">
                     <?php endif; ?>
@@ -351,7 +351,7 @@ include 'includes/header.php';
                             <label class="block text-gray-700 font-medium mb-1" for="product_image<?php echo $i; ?>">Product Image (PNG, JPG, JPEG, max 2MB)</label>
                             <input type="file" name="product_image<?php echo $i; ?>" id="product_image<?php echo $i; ?>" accept="image/png,image/jpeg,image/jpg" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
                             <?php if (!empty($products[$i]['product_image'])): ?>
-                                <img id="product-image-preview<?php echo $i; ?>" src="<?php echo htmlspecialchars(URLROOT . '/' . $products[$i]['product_image']); ?>" alt="Product <?php echo $i; ?> Image Preview" class="mt-2 max-w-xs h-auto">
+                                <img id="product-image-preview<?php echo $i; ?>" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $products[$i]['product_image']); ?>" alt="Product <?php echo $i; ?> Image Preview" class="mt-2 max-w-xs h-auto">
                             <?php else: ?>
                                 <img id="product-image-preview<?php echo $i; ?>" src="" alt="Product <?php echo $i; ?> Image Preview" class="mt-2 max-w-xs h-auto hidden">
                             <?php endif; ?>
