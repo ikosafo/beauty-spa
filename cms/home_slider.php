@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $errors[] = "Failed to move uploaded file for Slide $slide_id.";
                         error_log("Failed to move uploaded file to: " . $media_path);
                     } else {
-                        $background_media = 'Uploads/slider/' . $media_filename;
+                        $background_media = 'uploads/slider/' . $media_filename;
                         error_log("Image uploaded successfully for Slide $slide_id: " . $background_media);
                     }
                 }
