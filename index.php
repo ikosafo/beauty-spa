@@ -691,7 +691,7 @@ if (empty($posts)) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6 res-767-center">
-                    <img src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $about['image']); ?>" class="img-fluid" alt="about-image">
+                    <img src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $about['image']); ?>" class="img-fluid" alt="about-image" width="607" height="687" style="width: 607px; height: 687px; object-fit: cover;">
                 </div>
                 <div class="col-md-6 res-767-pt-30">
                     <div class="spacing-1">
@@ -740,12 +740,20 @@ if (empty($posts)) {
                     </div>
                 </div>
             </div>
+
+            <!-- Services Carousel -->
             <div class="row">
                 <div class="services-slide owl-carousel" data-item="4" data-nav="false" data-dots="false" data-auto="false">
                     <?php foreach ($boxes as $box): ?>
                         <div class="featured-imagebox featured-imagebox-services text-center style1">
                             <div class="ttm-post-thumbnail featured-thumbnail">
-                                <img class="img-fluid" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $box['image']); ?>" alt="service-image">
+                                <img 
+                                    class="img-fluid" 
+                                    src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $box['image']); ?>" 
+                                    alt="service-image"
+                                    width="252" 
+                                    height="240"
+                                    style="width: 252px; height: 240px; object-fit: cover;">
                                 <div class="featured-icon">
                                     <div class="ttm-icon ttm-icon_element-fill ttm-icon_element-color-white ttm-icon_element-size-md ttm-icon_element-style-rounded">
                                         <i class="<?php echo htmlspecialchars($box['icon']); ?>"></i>
@@ -762,6 +770,15 @@ if (empty($posts)) {
                             </div>
                         </div>
                     <?php endforeach; ?>
+                </div>
+            </div>
+
+            <!-- Explore More Button -->
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <a href="/services" class="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor">
+                        Explore More
+                    </a>
                 </div>
             </div>
         </div>
