@@ -71,10 +71,10 @@ $logo_path = $contact_data['logo'];
             <div class="row">
                 <div class="col-lg-6 col-md-7 col-sm-9 m-auto text-center">
                     <div class="footer-logo">
-                        <img id="footer-logo-img" class="img-center" src="<?php echo '/cms/'.htmlspecialchars($logo_path); ?>" alt="Golden View Therapeutic Clinique and Spa Logo">
+                        <img id="footer-logo-img" class="img-center" src="<?php echo '/cms/' . htmlspecialchars($logo_path); ?>" alt="Golden View Therapeutic Clinique and Spa Logo">
                     </div>
                     <h4 class="widget-text ttm-textcolor-white">Stay Connected with Golden View</h4>
-                    <form id="subscribe-form" class="newsletter-form" method="post" action="#" data-mailchimp="true">
+                    <form id="subscribe-form" class="newsletter-form" method="post" action="subscribe.php" data-mailchimp="true">
                         <div class="mailchimp-inputbox clearfix" id="subscribe-content"> 
                             <p><input type="email" name="email" placeholder="Your Email Address..." required=""></p>
                             <p><button class="submit ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-bgcolor-skincolor ttm-textcolor-white" style="background: #D4A017;" type="submit">Subscribe Now!</button></p>
@@ -111,7 +111,6 @@ $logo_path = $contact_data['logo'];
                                     <li><a href="/services#natural-body-contouring">Natural Body Contouring</a></li>
                                 </ul>
                             </li>
-                           
                             <li>
                                 <ul>
                                     <li><a href="/services#facial-therapy-skin-tag-removal">Facial Therapy / Skin Tag Removal</a></li>
@@ -121,8 +120,6 @@ $logo_path = $contact_data['logo'];
                                     <li><a href="/services#weave-on-hair-installation">Weave-On & Hair Installation</a></li>
                                 </ul>
                             </li>
-                            
-                           
                         </ul>
                     </div>
                 </div>
@@ -138,7 +135,7 @@ $logo_path = $contact_data['logo'];
                                 </div>
                                 <div class="featured-content">
                                     <div class="featured-desc">
-                                        <p><?php echo htmlspecialchars($contact_data['address']); ?></p>
+                                        <p><?php echo htmlspecialchars($contact_data['address'] ?? ''); ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +171,7 @@ $logo_path = $contact_data['logo'];
                                 </div>
                                 <div class="featured-content">
                                     <div class="featured-desc">
-                                        <p><?php echo htmlspecialchars($contact_data['working_hours']); ?></p>
+                                        <p><?php echo htmlspecialchars($contact_data['working_hours'] ?? ''); ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -242,6 +239,52 @@ $logo_path = $contact_data['logo'];
 <script src="revolution/js/revolution.tools.min.js"></script>
 <script src="revolution/js/rs6.min.js"></script>
 <script src="revolution/js/slider.js"></script>
+
+<!-- AJAX handler for subscription form -->
+<script>
+    $(document).ready(function() {
+        $('#subscribe-form').on('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            var $form = $(this);
+            var $msgDiv = $('#subscribe-msg');
+            var email = $form.find('input[name="email"]').val();
+
+            $.ajax({
+                url: $form.attr('action'), // subscribe.php
+                type: 'POST',
+                data: { email: email },
+                dataType: 'json',
+                success: function(response) {
+                    $msgDiv.html('<div class="alert alert-' + (response.success ? 'success' : 'danger') + '">' + response.message + '</div>');
+                    if (response.success) {
+                        $form.find('input[name="email"]').val(''); // Clear input on success
+                    }
+                },
+                error: function() {
+                    $msgDiv.html('<div class="alert alert-danger">An error occurred. Please try again later.</div>');
+                }
+            });
+        });
+    });
+</script>
 <!-- Javascript end-->
-</body>
-</html>
+
+<style>
+    .alert {
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        text-align: center;
+    }
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+    .alert-danger {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+    }
+</style>
