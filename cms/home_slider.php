@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_FILES["background_media_$slide_id"]) && $_FILES["background_media_$slide_id"]['error'] !== UPLOAD_ERR_NO_FILE) {
                 $allowed_types = ['image/png', 'image/jpeg', 'image/jpg'];
                 $max_size = 2 * 1024 * 1024; // 2MB
-                $upload_dir = './Uploads/slider/';
+                $upload_dir = './uploads/slider/';
                 $media_file = $_FILES["background_media_$slide_id"];
 
                 // Validate file type and size
