@@ -83,6 +83,12 @@ if (!isset($_SESSION['user_id'])) {
                             <li><a href="<?php echo URLROOT; ?>cms/shop.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'shop.php') ? 'active' : ''; ?>">Shop</a></li>
                         </ul>
                     </li>
+                    <li class="mb-2">
+                        <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">Users</a>
+                        <ul class="submenu pl-4 text-sm">
+                            <li><a href="<?php echo URLROOT; ?>cms/users.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'users.php') ? 'active' : ''; ?>">Users</a></li>
+                        </ul>
+                    </li>
                     <li class="mt-6">
                         <a href="<?php echo URLROOT; ?>cms/login.php" class="block p-2 rounded hover:bg-red-600">Logout</a>
                     </li>
