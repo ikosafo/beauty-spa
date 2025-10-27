@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $errors[] = 'Failed to move uploaded file for image.';
                     error_log('Failed to move uploaded file to: ' . $image_path);
                 } else {
-                    $image_data['image'] = 'Uploads/training-school/' . $image_filename;
+                    $image_data['image'] = 'uploads/training-school/' . $image_filename;
                     error_log('Image uploaded successfully: ' . $image_data['image']);
                 }
             }

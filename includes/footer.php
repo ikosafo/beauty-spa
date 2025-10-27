@@ -2,7 +2,7 @@
 require_once 'config.php';
 
 // Contact Data
-$query = "SELECT `logo`, `address`, `working_hours`, facebook, x, linkedin, instagram FROM ws_contact WHERE id = 1";
+$query = "SELECT `logo`, `email`, `phone1`,`address`, `working_hours`, facebook, x, linkedin, instagram FROM ws_contact WHERE id = 1";
 $result = $mysqli->query($query);
 $contact_data = $result && $result->num_rows > 0 ? $result->fetch_assoc() : [
     'logo' => 'images/logo.png',
@@ -147,7 +147,7 @@ $logo_path = $contact_data['logo'];
                                 </div>
                                 <div class="featured-content">
                                     <div class="featured-desc">
-                                        <p><a href="mailto:info@goldenviewspa.com">info@goldenviewspa.com</a></p>
+                                        <p><a href="mailto:<?php echo htmlspecialchars($contact_data['email'] ?? ''); ?>"><?php echo htmlspecialchars($contact_data['email'] ?? ''); ?></a></p>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@ $logo_path = $contact_data['logo'];
                                 </div>
                                 <div class="featured-content">
                                     <div class="featured-desc">
-                                        <p>(+01) 987 654 3210</p>
+                                        <p><?php echo htmlspecialchars($contact_data['phone1'] ?? ''); ?></p>
                                     </div>
                                 </div>
                             </div>

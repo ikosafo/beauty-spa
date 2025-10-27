@@ -55,16 +55,16 @@ if (!isset($_SESSION['user_id'])) {
                             <li><a href="<?php echo URLROOT; ?>cms/home_blog.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'home_blog.php') ? 'active' : ''; ?>">Blog</a></li>
                         </ul>
                     </li>
-                    <li class="mb-2">
+                    <!-- <li class="mb-2">
                         <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">About Us Sections</a>
                         <ul class="submenu pl-4 text-sm">
-                            <li><a href="<?php echo URLROOT; ?>cms/about.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'about.php') ? 'active' : ''; ?>">About</a></li>
-                           <!--  <li><a href="<?php echo URLROOT; ?>cms/clients.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'clients.php') ? 'active' : ''; ?>">Clients</a></li>
+                           <li><a href="<?php echo URLROOT; ?>cms/about.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'about.php') ? 'active' : ''; ?>">About</a></li>
+                             <li><a href="<?php echo URLROOT; ?>cms/clients.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'clients.php') ? 'active' : ''; ?>">Clients</a></li>
                             <li><a href="<?php echo URLROOT; ?>cms/team.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'team.php') ? 'active' : ''; ?>">Team</a></li>
                             <li><a href="<?php echo URLROOT; ?>cms/our_story.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'our_story.php') ? 'active' : ''; ?>">Our Story</a></li>
-                            <li><a href="<?php echo URLROOT; ?>cms/testimonials.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'testimonials.php') ? 'active' : ''; ?>">Testimonials</a></li> -->
+                            <li><a href="<?php echo URLROOT; ?>cms/testimonials.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'testimonials.php') ? 'active' : ''; ?>">Testimonials</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="mb-2">
                         <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">Contact Us Sections</a>
                         <ul class="submenu pl-4 text-sm">
