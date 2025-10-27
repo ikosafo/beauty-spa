@@ -241,7 +241,7 @@ include 'includes/header.php';
                             <div class="checkout-box p-30 border rounded bg-light">
                                 <h4 class="mb-3">Cart Summary</h4>
                                 <ul class="list-unstyled" id="cart-summary">
-                                    </ul>
+                                </ul>
                             </div>
                         </div>
 
@@ -449,7 +449,6 @@ include 'includes/header.php';
         font-weight: 500;
         color: #333;
     }
-
     
 
     /* Retain and update existing styles as needed */
