@@ -830,7 +830,7 @@ if (empty($posts)) {
     <!-- contact1-section end -->
 
     <!-- blog section -->
-    <section class="ttm-row blog-section">
+    <!-- <section class="ttm-row blog-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-9 m-auto">
@@ -870,7 +870,7 @@ if (empty($posts)) {
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- blog section end -->
 </div><!--site-main end-->
 

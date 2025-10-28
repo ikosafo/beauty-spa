@@ -123,73 +123,70 @@ error_log('Fetched training school data: ' . print_r(['training_section' => $tra
                     </div>
                 </div>
             </div>
-            <div class="row mt-50">
-                <div class="col-lg-12">
-                    <div class="section-title text-center">
-                        <h3>Why Choose Our Academy?</h3>
-                    </div>
-                    <p class="text-center">Our training school combines theoretical knowledge with practical experience, ensuring you’re ready to excel in the beauty industry. Learn in a supportive environment designed for success.</p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="featured-icon-box style1 text-center box-shadow">
-                                <div class="featured-icon-box-inner">
-                                    <div class="featured-icon">
-                                        <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
-                                            <i class="flaticon-spa"></i>
-                                        </div>
-                                    </div>
-                                    <div class="featured-content">
-                                        <div class="featured-title">
-                                            <h5>Expert Instructors</h5>
-                                        </div>
-                                        <div class="featured-desc">
-                                            <p>Learn from industry leaders with extensive experience, guiding you to master professional techniques.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="featured-icon-box style1 text-center box-shadow">
-                                <div class="featured-icon-box-inner">
-                                    <div class="featured-icon">
-                                        <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
-                                            <i class="flaticon-wellness"></i>
-                                        </div>
-                                    </div>
-                                    <div class="featured-content">
-                                        <div class="featured-title">
-                                            <h5>Hands-On Training</h5>
-                                        </div>
-                                        <div class="featured-desc">
-                                            <p>Gain practical skills through real-world practice in our state-of-the-art facilities.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="featured-icon-box style1 text-center box-shadow">
-                                <div class="featured-icon-box-inner">
-                                    <div class="featured-icon">
-                                        <div class="ttm-icon ttm-icon_element-size-lg ttm-textcolor-skincolor">
-                                            <i class="flaticon-hammam"></i>
-                                        </div>
-                                    </div>
-                                    <div class="featured-content">
-                                        <div class="featured-title">
-                                            <h5>Certification</h5>
-                                        </div>
-                                        <div class="featured-desc">
-                                            <p>Earn industry-recognized certifications to launch your career with confidence.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- why-choose-academy-section – MODERN UI -->
+        <div class="row mt-5">
+            <div class="col-lg-12 text-center mb-4">
+                <h3 class="fw-bold">Why Choose Our Academy?</h3>
+                <p class="text-muted">Our training school combines theoretical knowledge with practical experience, ensuring you’re ready to excel in the beauty industry.</p>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center mb-5"  style="padding-bottom: 30px !important;">
+            <?php
+            // You can later move these to DB (e.g. ws_training_school with type='why')
+            $why_items = [
+                [
+                    'icon'  => 'fa-solid fa-chalkboard-teacher',
+                    'title' => 'Expert Instructors',
+                    'desc'  => 'Learn from industry leaders with extensive experience, guiding you to master professional techniques.'
+                ],
+                [
+                    'icon'  => 'fa-solid fa-hands-helping',
+                    'title' => 'Hands-On Training',
+                    'desc'  => 'Gain practical skills through real-world practice in our state-of-the-art facilities.'
+                ],
+                [
+                    'icon'  => 'fa-solid fa-certificate',
+                    'title' => 'Certification',
+                    'desc'  => 'Earn industry-recognized certifications to launch your career with confidence.'
+                ]
+            ];
+
+            foreach ($why_items as $item):
+            ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="why-card text-center p-4 bg-white rounded-3 shadow-sm h-100 d-flex flex-column transition-all">
+                        <!-- Icon -->
+                        <!-- <div class="why-icon mb-3">
+                            <i class="<?php echo $item['icon']; ?> fa-3x ttm-textcolor-skincolor"></i>
+                        </div> -->
+                        <!-- Title -->
+                        <h5 class="fw-bold mb-2"><?php echo htmlspecialchars($item['title']); ?></h5>
+                        <!-- Description -->
+                        <p class="text-muted small flex-grow-1"><?php echo htmlspecialchars($item['desc']); ?></p>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
+        </div>
+
+<style>
+/* Hover animation */
+.why-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+.why-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+    border-color: var(--skincolor, #d4a574);
+}
+.why-icon i {
+    transition: color 0.3s ease;
+}
+.why-card:hover .why-icon i {
+    color: var(--skincolor, #d4a574) !important;
+}
+</style>
         </div>
     </section>
     <!-- training-section end -->
