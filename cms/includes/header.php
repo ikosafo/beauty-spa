@@ -72,6 +72,12 @@ if (!isset($_SESSION['user_id'])) {
                         </ul>
                     </li>
                     <li class="mb-2">
+                        <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">Services</a>
+                        <ul class="submenu pl-4 text-sm">
+                            <li><a href="<?php echo URLROOT; ?>cms/services.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'services.php') ? 'active' : ''; ?>">Services</a></li>
+                        </ul>
+                    </li>
+                    <li class="mb-2">
                         <a href="#" class="sidebar-link block p-2 rounded hover:bg-gray-700">Training School</a>
                         <ul class="submenu pl-4 text-sm">
                             <li><a href="<?php echo URLROOT; ?>cms/training_school.php" class="block p-2 hover:text-blue-300 <?php echo (basename($_SERVER['PHP_SELF']) === 'training_school.php') ? 'active' : ''; ?>">Training School</a></li>
