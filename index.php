@@ -789,6 +789,7 @@ if (empty($posts)) {
     <section class="ttm-row testimonial-section clearfix">
         <div class="container">
             <div class="row">
+                <!-- LEFT: Dynamic Testimonials -->
                 <div class="col-md-6 text-end pt-80 res-767-pt-0">
                     <div class="testimonial-wrapper ttm-quotestyle-row">
                         <div class="spacing-2 col-bg-img-one ttm-col-bgimage-yes ttm-bg res-767-h-auto">
@@ -800,54 +801,58 @@ if (empty($posts)) {
                                         <h2 class="title"><?php echo htmlspecialchars($testimonial_section['title']); ?></h2>
                                     </div>
                                 </div>
-                                <div class="testimonial-slide style2 owl-carousel" data-item="1" data-nav="false" data-dots="false" data-auto="false">
-                                    <?php foreach ($testimonials as $testimonial): ?>
-                                        <div class="testimonials style2">
-                                            <div class="testimonial-content">
-                                                <p><?php echo htmlspecialchars($testimonial['quote']); ?></p>
-                                                <div class="testimonial-caption">
-                                                    <h6><?php echo htmlspecialchars($testimonial['name']); ?></h6>
-                                                    <label><?php echo htmlspecialchars($testimonial['label']); ?></label>
+
+                                <?php if (!empty($testimonials)): ?>
+                                    <div class="testimonial-slide style2 owl-carousel" data-item="1" data-nav="false" data-dots="false" data-auto="false">
+                                        <?php foreach ($testimonials as $t): ?>
+                                            <div class="testimonials style2">
+                                                <div class="testimonial-content">
+                                                    <p><?php echo nl2br(htmlspecialchars($t['quote'])); ?></p>
+                                                    <div class="testimonial-caption">
+                                                        <h6><?php echo htmlspecialchars($t['name']); ?></h6>
+                                                        <label><?php echo htmlspecialchars($t['label']); ?></label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php else: ?>
+                                    <p class="text-center text-muted p-4">No testimonials available.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- RIGHT: Fixed 4 Fact Boxes -->
                 <div class="col-md-6 text-right">
                     <div class="ttm-fid-wrapper">
                         <div class="spacing-3 res-767-mb-15 ttm-bgcolor-darkgrey ttm-bg ttm-col-bgimage-yes col-bg-img-two res-767-h-auto">
                             <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
                             <div class="layer-content h-100">
                                 <div class="row">
-                                    <?php foreach ($facts as $index => $fact): ?>
-                                        <div class="col-md-6 col-sm-6 col-6 p-0 <?php echo $index <= 2 ? 'border-bottom' : ''; ?> <?php echo $index % 2 == 0 ? 'border-left' : ''; ?> text-center">
-                                            <div class="ttm-fid inside style1 <?php echo $index > 2 ? 'pb-0' : 'pt-10'; ?>">
+                                    <?php for ($i = 1; $i <= 4; $i++): ?>
+                                        <div class="col-md-6 col-sm-6 col-6 p-0 <?php echo $i <= 2 ? 'border-bottom' : ''; ?> <?php echo $i % 2 == 1 ? 'border-left' : ''; ?> text-center">
+                                            <div class="ttm-fid inside style1 <?php echo $i > 2 ? 'pb-0' : 'pt-10'; ?>">
                                                 <div class="ttm-fid-center">
                                                     <div class="ttm-fid-icon-wrapper ttm-textcolor-skincolor">
-                                                        <i class="<?php echo htmlspecialchars($fact['icon']); ?>"></i>
+                                                        <i class="<?php echo htmlspecialchars($facts[$i]['icon']); ?>"></i>
                                                     </div>
                                                     <h4 class="ttm-fid-inner ttm-textcolor-white">
                                                         <span data-appear-animation="animateDigits"
                                                             data-from="0"
-                                                            data-to="<?php echo htmlspecialchars($fact['number']); ?>"
-                                                            data-interval="100"
-                                                            data-before=""
-                                                            data-before-style="sup"
-                                                            data-after=""
-                                                            data-after-style="sub"
-                                                        ><?php echo htmlspecialchars($fact['number']); ?></span>
+                                                            data-to="<?php echo (int)$facts[$i]['number']; ?>"
+                                                            data-interval="100">
+                                                            <?php echo (int)$facts[$i]['number']; ?>
+                                                        </span>
                                                     </h4>
                                                 </div>
                                                 <div class="ttm-fid-contents">
-                                                    <h3 class="ttm-fid-title"><?php echo htmlspecialchars($fact['title']); ?></h3>
+                                                    <h3 class="ttm-fid-title"><?php echo htmlspecialchars($facts[$i]['title']); ?></h3>
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
+                                    <?php endfor; ?>
                                 </div>
                             </div>
                         </div>
@@ -856,7 +861,6 @@ if (empty($posts)) {
             </div>
         </div>
     </section>
-    <!-- testimonial section end -->
 
     <!-- gallery-section -->
     <!-- Include Lightbox2 CSS -->
