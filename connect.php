@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-6">
+                    <!-- <div class="col-md-4 col-sm-6">
                         <div class="featured-icon-box icon-align-before-content style6">
                             <div class="featured-icon">
                                 <div class="ttm-icon ttm-icon_element-color-skincolor ttm-icon_element-size-md">
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-12">
