@@ -132,7 +132,7 @@ if (empty($boxes)) {
 }
 
 // Testimonials & Facts
-$query = "SELECT * FROM ws_testimonials WHERE id IN (1, 2, 3, 4, 5, 6, 7, 8) ORDER BY id";
+$query = "SELECT * FROM ws_testimonials ORDER BY id";
 $result = $mysqli->query($query);
 $testimonial_section = [];
 $testimonials = [];
@@ -206,7 +206,7 @@ if (empty($facts)) {
 }
 
 // Gallery - NOW INCLUDES 'caption'
-$query = "SELECT * FROM ws_gallery ORDER BY id";
+$query = "SELECT * FROM ws_gallery ORDER BY id LIMIT 6";
 $result = $mysqli->query($query);
 $gallery_section = [];
 $images = [];
