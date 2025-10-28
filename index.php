@@ -13,7 +13,6 @@ $contact_data = $result && $result->num_rows > 0 ? $result->fetch_assoc() : [
     'linkedin' => '',
     'instagram' => ''
 ];
-// Ensure social media and working hours fields are not NULL
 $contact_data['facebook'] = $contact_data['facebook'] ?? '';
 $contact_data['x'] = $contact_data['x'] ?? '';
 $contact_data['linkedin'] = $contact_data['linkedin'] ?? '';
@@ -206,8 +205,8 @@ if (empty($facts)) {
     ];
 }
 
-// Gallery
-$query = "SELECT * FROM ws_gallery WHERE id IN (1, 2, 3, 4, 5) ORDER BY id";
+// Gallery - NOW INCLUDES 'caption'
+$query = "SELECT * FROM ws_gallery ORDER BY id";
 $result = $mysqli->query($query);
 $gallery_section = [];
 $images = [];
@@ -229,10 +228,10 @@ if (empty($gallery_section)) {
 }
 if (empty($images)) {
     $images = [
-        1 => ['image' => 'images/gallery/01.jpg', 'image_order' => 1],
-        2 => ['image' => 'images/gallery/02.jpg', 'image_order' => 2],
-        3 => ['image' => 'images/gallery/03.jpg', 'image_order' => 3],
-        4 => ['image' => 'images/gallery/04.jpg', 'image_order' => 4]
+        1 => ['image' => 'images/gallery/01.jpg', 'image_order' => 1, 'caption' => 'Relaxing Spa Treatment'],
+        2 => ['image' => 'images/gallery/02.jpg', 'image_order' => 2, 'caption' => 'Luxury Massage Room'],
+        3 => ['image' => 'images/gallery/03.jpg', 'image_order' => 3, 'caption' => 'Facial Care Session'],
+        4 => ['image' => 'images/gallery/04.jpg', 'image_order' => 4, 'caption' => 'Sauna & Wellness']
     ];
 }
 
@@ -408,6 +407,13 @@ if (empty($posts)) {
 }
 ?>
 
+<!-- ====================== LIGHTBOX CSS (in header) ====================== -->
+<?php 
+// Add this to your includes/header.php or inside <head>
+?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.2/dist/simple-lightbox.min.css">
+
 <style>
     /* Custom styles for the gallery section */
     .gallery-section .featured-imagebox-portfolio {
@@ -433,16 +439,27 @@ if (empty($posts)) {
         right: 0;
         bottom: 0;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.5);
         opacity: 0;
         transition: opacity 0.3s ease;
+        padding: 20px;
+        text-align: center;
     }
     .gallery-section .featured-imagebox-portfolio:hover .featured-content-portfolio {
         opacity: 1;
     }
-    .gallery-section .featured-content-portfolio a {
+    .gallery-section .gallery-caption {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        z-index: 999 !important;
+    }
+    .gallery-section .featured-content-portfolio i {
         font-size: 24px;
         color: #fff;
         background: #ff6f61;
@@ -486,196 +503,24 @@ if (empty($posts)) {
             <!-- Slide 1 -->
             <rs-slide data-key="<?php echo htmlspecialchars($slides[1]['slide_key']); ?>" data-title="Slide" data-thumb="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[1]['background_media']); ?>" data-anim="ei:d;eo:d;s:d;r:0;t:slidingoverlayhorizontal;sl:d;">
                 <img src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[1]['background_media']); ?>" title="home-mainslider-bg001" width="1920" height="790" class="rev-slidebg" data-no-retina>
-                <!-- Dark Overlay Layer -->
-                <rs-layer
-                    id="slider-2-slide-3-layer-overlay"
-                    data-type="shape"
-                    data-rsp_ch="on"
-                    data-xy="x:c;y:c;"
-                    data-text="w:normal;s:20,20,12,7;l:0,0,15,9;"
-                    data-dim="w:100%;h:100%;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="st:100;sp:500;sR:100;"
-                    data-frame_999="o:0;st:w;sR:8400;"
-                    style="z-index:6;background-color:rgba(0,0,0,0.5);"
-                ></rs-layer>
-                <rs-layer
-                    id="slider-2-slide-3-layer-0"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:80px,80px,-103px,-62px;"
-                    data-text="w:normal;s:60,60,40,30;l:100,100,62,38;"
-                    data-frame_0="sX:0.9;sY:0.9;"
-                    data-frame_1="st:160;sp:500;sR:160;"
-                    data-frame_999="o:0;st:w;sR:8340;"
-                    style="z-index:9;font-family:Herr Von Muellerhoff;"
-                ><span class="ttm-textcolor-skincolor"><?php echo htmlspecialchars($slides[1]['subtitle']); ?></span>
-                </rs-layer>
-                <rs-layer
-                    id="slider-2-slide-3-layer-1"
-                    data-type="shape"
-                    data-rsp_ch="on"
-                    data-xy="xo:55px,55px,-490px,-302px;y:m;yo:272px,272px,-60px,-37px;"
-                    data-text="w:normal;s:20,20,12,7;l:0,0,15,9;"
-                    data-dim="w:30px,30px,18px,11px;h:1px;"
-                    data-vbility="t,t,f,f"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:50;sp:500;sR:50;"
-                    data-frame_999="o:0;st:w;sR:8450;"
-                    style="z-index:8;background-color:#ffffff;font-family:Roboto;"
-                ></rs-layer>
-                <rs-layer
-                    id="slider-2-slide-3-layer-2"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:212px,212px,5px,21px;"
-                    data-text="w:normal;s:60,60,47,33;l:90,90,56,34;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:750;sp:1000;sR:750;"
-                    data-frame_999="o:0;st:w;sR:7250;"
-                    style="z-index:11;font-family:Nimbus Roman No9 L;"
-                ><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[1]['heading2']); ?></span>
-                </rs-layer>
-                <rs-layer
-                    id="slider-2-slide-3-layer-3"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:146px,146px,-49px,-20px;"
-                    data-text="w:normal;s:60,60,47,33;l:90,90,56,34;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:510;sp:1000;sR:510;"
-                    data-frame_999="o:0;st:w;sR:7490;"
-                    style="z-index:10;font-family:Nimbus Roman No9 L;"
-                ><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[1]['heading1']); ?></span>
-                </rs-layer>
-                <rs-layer
-                    id="slider-2-slide-3-layer-4"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:98px,98px,0,430px;y:m;yo:275px,275px,50px,32px;"
-                    data-text="w:normal;s:18,18,16,9;l:28,28,17,10;"
-                    data-vbility="t,t,t,f"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:1020;sp:1000;sR:1020;"
-                    data-frame_999="o:0;st:w;sR:6980;"
-                    style="z-index:12;font-family:Poppins;font-style:italic;"
-                ><?php echo htmlspecialchars($slides[1]['description']); ?>
-                </rs-layer>
-                <a
-                    id="slider-2-slide-3-layer-7"
-                    class="rs-layer ttm-btn ttm-btn-style-border ttm-btn-color-skincolor"
-                    href="<?php echo htmlspecialchars($slides[1]['button_url']); ?>" target="_self" rel="nofollow"
-                    data-type="text"
-                    data-color="#fc84b4"
-                    data-rsp_ch="on"
-                    data-xy="x:r,r,c,c;xo:40px,40px,0,0;y:m;yo:163px,163px,105px,73px;"
-                    data-text="w:normal;s:15,15,14,12;l:20,20,12,10;fw:500;"
-                    data-padding="t:15,15,12,10;r:35,35,25,20;b:15,15,12,10;l:35,35,25,20;"
-                    data-border="bos:solid;boc:#fc84b4;bow:1px,1px,1px,1px;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:1100;sp:600;sR:1100;"
-                    data-frame_999="o:0;st:w;sR:7300;"
-                    data-frame_hover="c:#fff;bgc:#fc84b4;boc:#fc84b4;bos:solid;bow:1px,1px,1px,1px;"
-                    style="z-index:13;font-family:Poppins;margin-right: 15px;"
-                ><?php echo htmlspecialchars($slides[1]['button_text']); ?>
-                </a>
+                <rs-layer id="slider-2-slide-3-layer-overlay" data-type="shape" data-rsp_ch="on" data-xy="x:c;y:c;" data-text="w:normal;s:20,20,12,7;l:0,0,15,9;" data-dim="w:100%;h:100%;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="st:100;sp:500;sR:100;" data-frame_999="o:0;st:w;sR:8400;" style="z-index:6;background-color:rgba(0,0,0,0.5);"></rs-layer>
+                <rs-layer id="slider-2-slide-3-layer-0" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:80px,80px,-103px,-62px;" data-text="w:normal;s:60,60,40,30;l:100,100,62,38;" data-frame_0="sX:0.9;sY:0.9;" data-frame_1="st:160;sp:500;sR:160;" data-frame_999="o:0;st:w;sR:8340;" style="z-index:9;font-family:Herr Von Muellerhoff;"><span class="ttm-textcolor-skincolor"><?php echo htmlspecialchars($slides[1]['subtitle']); ?></span></rs-layer>
+                <rs-layer id="slider-2-slide-3-layer-1" data-type="shape" data-rsp_ch="on" data-xy="xo:55px,55px,-490px,-302px;y:m;yo:272px,272px,-60px,-37px;" data-text="w:normal;s:20,20,12,7;l:0,0,15,9;" data-dim="w:30px,30px,18px,11px;h:1px;" data-vbility="t,t,f,f" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:50;sp:500;sR:50;" data-frame_999="o:0;st:w;sR:8450;" style="z-index:8;background-color:#ffffff;font-family:Roboto;"></rs-layer>
+                <rs-layer id="slider-2-slide-3-layer-2" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:212px,212px,5px,21px;" data-text="w:normal;s:60,60,47,33;l:90,90,56,34;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:750;sp:1000;sR:750;" data-frame_999="o:0;st:w;sR:7250;" style="z-index:11;font-family:Nimbus Roman No9 L;"><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[1]['heading2']); ?></span></rs-layer>
+                <rs-layer id="slider-2-slide-3-layer-3" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:146px,146px,-49px,-20px;" data-text="w:normal;s:60,60,47,33;l:90,90,56,34;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:510;sp:1000;sR:510;" data-frame_999="o:0;st:w;sR:7490;" style="z-index:10;font-family:Nimbus Roman No9 L;"><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[1]['heading1']); ?></span></rs-layer>
+                <rs-layer id="slider-2-slide-3-layer-4" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:98px,98px,0,430px;y:m;yo:275px,275px,50px,32px;" data-text="w:normal;s:18,18,16,9;l:28,28,17,10;" data-vbility="t,t,t,f" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:1020;sp:1000;sR:1020;" data-frame_999="o:0;st:w;sR:6980;" style="z-index:12;font-family:Poppins;font-style:italic;"><?php echo htmlspecialchars($slides[1]['description']); ?></rs-layer>
+                <a id="slider-2-slide-3-layer-7" class="rs-layer ttm-btn ttm-btn-style-border ttm-btn-color-skincolor" href="<?php echo htmlspecialchars($slides[1]['button_url']); ?>" target="_self" rel="nofollow" data-type="text" data-color="#fc84b4" data-rsp_ch="on" data-xy="x:r,r,c,c;xo:40px,40px,0,0;y:m;yo:163px,163px,105px,73px;" data-text="w:normal;s:15,15,14,12;l:20,20,12,10;fw:500;" data-padding="t:15,15,12,10;r:35,35,25,20;b:15,15,12,10;l:35,35,25,20;" data-border="bos:solid;boc:#fc84b4;bow:1px,1px,1px,1px;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:1100;sp:600;sR:1100;" data-frame_999="o:0;st:w;sR:7300;" data-frame_hover="c:#fff;bgc:#fc84b4;boc:#fc84b4;bos:solid;bow:1px,1px,1px,1px;" style="z-index:13;font-family:Poppins;margin-right: 15px;"><?php echo htmlspecialchars($slides[1]['button_text']); ?></a>
             </rs-slide>
             <!-- Slide 2 -->
             <rs-slide data-key="<?php echo htmlspecialchars($slides[2]['slide_key']); ?>" data-title="Slide" data-thumb="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[2]['background_media']); ?>" data-anim="ei:d;eo:d;s:d;r:0;t:slidingoverlayhorizontal;sl:d;">
                 <img src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $slides[2]['background_media']); ?>" title="home-mainslider-bg002" width="1920" height="790" class="rev-slidebg" data-no-retina>
-                <!-- Dark Overlay Layer -->
-                <rs-layer
-                    id="slider-2-slide-4-layer-overlay"
-                    data-type="shape"
-                    data-rsp_ch="on"
-                    data-xy="x:c;y:c;"
-                    data-text="w:normal;s:20,20,12,7;l:0,0,15,9;"
-                    data-dim="w:100%;h:100%;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="st:100;sp:500;sR:100;"
-                    data-frame_999="o:0;st:w;sR:8400;"
-                    style="z-index:6;background-color:rgba(0,0,0,0.5);"
-                ></rs-layer>
-                <rs-layer
-                    id="slider-2-slide-4-layer-0"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:90px,90px,-108px,-69px;"
-                    data-text="w:normal;s:60,60,40,30;l:100,100,62,38;"
-                    data-frame_0="sX:0.9;sY:0.9;"
-                    data-frame_1="st:160;sp:500;sR:160;"
-                    data-frame_999="o:0;st:w;sR:8340;"
-                    style="z-index:10;font-family:Herr Von Muellerhoff;"
-                ><span class="ttm-textcolor-skincolor"><?php echo htmlspecialchars($slides[2]['subtitle']); ?></span>
-                </rs-layer>
-                <rs-layer
-                    id="slider-2-slide-4-layer-1"
-                    data-type="shape"
-                    data-rsp_ch="on"
-                    data-xy="xo:55px,55px,-490px,-302px;y:m;yo:285px,285px,-60px,-37px;"
-                    data-text="w:normal;s:20,20,12,7;l:0,0,15,9;"
-                    data-dim="w:30px,30px,18px,11px;h:1px;"
-                    data-vbility="t,t,f,f"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:1010;sp:500;sR:1010;"
-                    data-frame_999="o:0;st:w;sR:7490;"
-                    style="z-index:8;background-color:#ffffff;font-family:Roboto;"
-                ></rs-layer>
-                <rs-layer
-                    id="slider-2-slide-4-layer-2"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:222px,222px,0,14px;"
-                    data-text="w:normal;s:60,60,47,33;l:90,90,56,34;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:750;sp:1000;sR:750;"
-                    data-frame_999="o:0;st:w;sR:7250;"
-                    style="z-index:12;font-family:Nimbus Roman No9 L;"
-                ><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[2]['heading2']); ?></span>
-                </rs-layer>
-                <rs-layer
-                    id="slider-2-slide-4-layer-3"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:156px,156px,-54px,-27px;"
-                    data-text="w:normal;s:60,60,47,33;l:90,90,56,34;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:510;sp:1000;sR:510;"
-                    data-frame_999="o:0;st:w;sR:7490;"
-                    style="z-index:11;font-family:Nimbus Roman No9 L;"
-                ><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[2]['heading1']); ?></span>
-                </rs-layer>
-                <rs-layer
-                    id="slider-2-slide-4-layer-4"
-                    data-type="text"
-                    data-rsp_ch="on"
-                    data-xy="x:l,l,c,c;xo:98px,98px,0,430px;y:m;yo:285px,285px,45px,32px;"
-                    data-text="w:normal;s:18,18,16,9;l:28,28,17,10;"
-                    data-vbility="t,t,t,f"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:1020;sp:1000;sR:1020;"
-                    data-frame_999="o:0;st:w;sR:6980;"
-                    style="z-index:12;font-family:Poppins;font-style:italic;"
-                ><?php echo htmlspecialchars($slides[2]['description']); ?>
-                </rs-layer>
-                <a
-                    id="slider-2-slide-4-layer-7"
-                    class="rs-layer ttm-btn ttm-btn-style-border ttm-btn-color-skincolor"
-                    href="<?php echo htmlspecialchars($slides[2]['button_url']); ?>" target="_blank" rel="nofollow"
-                    data-type="text"
-                    data-color="#fc84b4"
-                    data-rsp_ch="on"
-                    data-xy="x:r,r,c,c;xo:40px,40px,0,0;y:m;yo:163px,163px,105px,73px;"
-                    data-text="w:normal;s:15,15,14,12;l:20,20,12,10;fw:500;"
-                    data-padding="t:15,15,12,10;r:35,35,25,20;b:15,15,12,10;l:35,35,25,20;"
-                    data-border="bos:solid;boc:#fc84b4;bow:1px,1px,1px,1px;"
-                    data-frame_0="sX:0.8;sY:0.8;"
-                    data-frame_1="e:Power4.easeOut;st:1100;sp:600;sR:1100;"
-                    data-frame_999="o:0;st:w;sR:7300;"
-                    data-frame_hover="c:#fff;bgc:#fc84b4;boc:#fc84b4;bos:solid;bow:1px,1px,1px,1px;"
-                    style="z-index:13;font-family:Poppins;margin-right: 15px;"
-                ><?php echo htmlspecialchars($slides[2]['button_text']); ?>
-                </a>
+                <rs-layer id="slider-2-slide-4-layer-overlay" data-type="shape" data-rsp_ch="on" data-xy="x:c;y:c;" data-text="w:normal;s:20,20,12,7;l:0,0,15,9;" data-dim="w:100%;h:100%;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="st:100;sp:500;sR:100;" data-frame_999="o:0;st:w;sR:8400;" style="z-index:6;background-color:rgba(0,0,0,0.5);"></rs-layer>
+                <rs-layer id="slider-2-slide-4-layer-0" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:90px,90px,-108px,-69px;" data-text="w:normal;s:60,60,40,30;l:100,100,62,38;" data-frame_0="sX:0.9;sY:0.9;" data-frame_1="st:160;sp:500;sR:160;" data-frame_999="o:0;st:w;sR:8340;" style="z-index:10;font-family:Herr Von Muellerhoff;"><span class="ttm-textcolor-skincolor"><?php echo htmlspecialchars($slides[2]['subtitle']); ?></span></rs-layer>
+                <rs-layer id="slider-2-slide-4-layer-1" data-type="shape" data-rsp_ch="on" data-xy="xo:55px,55px,-490px,-302px;y:m;yo:285px,285px,-60px,-37px;" data-text="w:normal;s:20,20,12,7;l:0,0,15,9;" data-dim="w:30px,30px,18px,11px;h:1px;" data-vbility="t,t,f,f" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:1010;sp:500;sR:1010;" data-frame_999="o:0;st:w;sR:7490;" style="z-index:8;background-color:#ffffff;font-family:Roboto;"></rs-layer>
+                <rs-layer id="slider-2-slide-4-layer-2" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:222px,222px,0,14px;" data-text="w:normal;s:60,60,47,33;l:90,90,56,34;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:750;sp:1000;sR:750;" data-frame_999="o:0;st:w;sR:7250;" style="z-index:12;font-family:Nimbus Roman No9 L;"><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[2]['heading2']); ?></span></rs-layer>
+                <rs-layer id="slider-2-slide-4-layer-3" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:55px,55px,0,0;y:m;yo:156px,156px,-54px,-27px;" data-text="w:normal;s:60,60,47,33;l:90,90,56,34;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:510;sp:1000;sR:510;" data-frame_999="o:0;st:w;sR:7490;" style="z-index:11;font-family:Nimbus Roman No9 L;"><span class="slider-heding-title-font"><?php echo htmlspecialchars($slides[2]['heading1']); ?></span></rs-layer>
+                <rs-layer id="slider-2-slide-4-layer-4" data-type="text" data-rsp_ch="on" data-xy="x:l,l,c,c;xo:98px,98px,0,430px;y:m;yo:285px,285px,45px,32px;" data-text="w:normal;s:18,18,16,9;l:28,28,17,10;" data-vbility="t,t,t,f" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:1020;sp:1000;sR:1020;" data-frame_999="o:0;st:w;sR:6980;" style="z-index:12;font-family:Poppins;font-style:italic;"><?php echo htmlspecialchars($slides[2]['description']); ?></rs-layer>
+                <a id="slider-2-slide-4-layer-7" class="rs-layer ttm-btn ttm-btn-style-border ttm-btn-color-skincolor" href="<?php echo htmlspecialchars($slides[2]['button_url']); ?>" target="_blank" rel="nofollow" data-type="text" data-color="#fc84b4" data-rsp_ch="on" data-xy="x:r,r,c,c;xo:40px,40px,0,0;y:m;yo:163px,163px,105px,73px;" data-text="w:normal;s:15,15,14,12;l:20,20,12,10;fw:500;" data-padding="t:15,15,12,10;r:35,35,25,20;b:15,15,12,10;l:35,35,25,20;" data-border="bos:solid;boc:#fc84b4;bow:1px,1px,1px,1px;" data-frame_0="sX:0.8;sY:0.8;" data-frame_1="e:Power4.easeOut;st:1100;sp:600;sR:1100;" data-frame_999="o:0;st:w;sR:7300;" data-frame_hover="c:#fff;bgc:#fc84b4;boc:#fc84b4;bos:solid;bow:1px,1px,1px,1px;" style="z-index:13;font-family:Poppins;margin-right: 15px;"><?php echo htmlspecialchars($slides[2]['button_text']); ?></a>
             </rs-slide>
         </rs-slides>
         <rs-static-layers></rs-static-layers>
@@ -747,13 +592,7 @@ if (empty($posts)) {
                     <?php foreach ($boxes as $box): ?>
                         <div class="featured-imagebox featured-imagebox-services text-center style1">
                             <div class="ttm-post-thumbnail featured-thumbnail">
-                                <img 
-                                    class="img-fluid" 
-                                    src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $box['image']); ?>" 
-                                    alt="service-image"
-                                    width="252" 
-                                    height="240"
-                                    style="width: 252px; height: 240px; object-fit: cover;">
+                                <img class="img-fluid" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $box['image']); ?>" alt="service-image" width="252" height="240" style="width: 252px; height: 240px; object-fit: cover;">
                                 <div class="featured-icon">
                                     <div class="ttm-icon ttm-icon_element-fill ttm-icon_element-color-white ttm-icon_element-size-md ttm-icon_element-style-rounded">
                                         <i class="<?php echo htmlspecialchars($box['icon']); ?>"></i>
@@ -840,9 +679,9 @@ if (empty($posts)) {
                                                     </div>
                                                     <h4 class="ttm-fid-inner ttm-textcolor-white">
                                                         <span data-appear-animation="animateDigits"
-                                                            data-from="0"
-                                                            data-to="<?php echo (int)$facts[$i]['number']; ?>"
-                                                            data-interval="100">
+                                                              data-from="0"
+                                                              data-to="<?php echo (int)$facts[$i]['number']; ?>"
+                                                              data-interval="100">
                                                             <?php echo (int)$facts[$i]['number']; ?>
                                                         </span>
                                                     </h4>
@@ -863,9 +702,6 @@ if (empty($posts)) {
     </section>
 
     <!-- gallery-section -->
-    <!-- Include Lightbox2 CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-
     <section class="ttm-row gallery-section ttm-bgcolor-grey clearfix">
         <div class="gallery-title-section ttm-bgcolor-skincolor">
             <div class="container">
@@ -876,20 +712,26 @@ if (empty($posts)) {
                                 <h5><?php echo htmlspecialchars($gallery_section['subtitle']); ?></h5>
                                 <h2 class="title"><?php echo htmlspecialchars($gallery_section['title']); ?></h2>
                             </div>
-                            <div class="title-desc ttm-textcolor-white pl-50 pr-50 res-767-p-0"><?php echo htmlspecialchars($gallery_section['description']); ?></div>
+                            <div class="title-desc ttm-textcolor-white"><?php echo htmlspecialchars($gallery_section['description']); ?></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container mt_70 res-991-mt_50">
+        <div class="container mt_70">
             <div class="row">
-                <?php foreach ($images as $index => $image): ?>
-                    <div class="col-md-4">
+                <?php foreach ($images as $img): ?>
+                    <div class="col-md-4 col-sm-6">
                         <div class="featured-imagebox-portfolio">
-                            <a href="<?php echo htmlspecialchars(URLROOT . '/cms/' . $image['image']); ?>" data-lightbox="gallery" data-caption="<?php echo htmlspecialchars($gallery_section['title']); ?>">
-                                <img class="img-fluid" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $image['image']); ?>" alt="gallery-image">
+                            <a href="<?php echo URLROOT . '/cms/' . $img['image']; ?>"
+                               data-lightbox="gallery"
+                               data-title="<?php echo htmlspecialchars($img['caption'] ?? ''); ?>"
+                               class="gallery-lightbox">
+                                <img class="img-fluid" src="<?php echo URLROOT . '/cms/' . $img['image']; ?>" alt="gallery">
                                 <div class="featured-content-portfolio">
+                                    <div class="gallery-caption">
+                                        <?php echo htmlspecialchars($img['caption'] ?? ''); ?>
+                                    </div>
                                     <i class="fa fa-camera"></i>
                                 </div>
                             </a>
@@ -897,22 +739,17 @@ if (empty($posts)) {
                     </div>
                 <?php endforeach; ?>
             </div>
+
+            <!-- View More Gallery Button -->
+            <div class="row mt-5" style="margin-top: 30px !important;">
+                <div class="col text-center">
+                    <a href="/gallery" class="ttm-btn ttm-btn-size-md ttm-btn-shape-rounded ttm-btn-style-fill ttm-btn-color-skincolor">
+                        View More Gallery
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
-    <!-- gallery-section end -->
-
-    <!-- Include Lightbox2 JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    <script>
-        jQuery(document).ready(function($) {
-            lightbox.option({
-                'resizeDuration': 200,
-                'wrapAround': true,
-                'albumLabel': 'Image %1 of %2'
-            });
-        });
-    </script>
 
     <!-- process-section -->
     <section class="ttm-row ttm-bgcolor-grey process-section">
@@ -1036,5 +873,32 @@ if (empty($posts)) {
     </section>
     <!-- blog section end -->
 </div><!--site-main end-->
+
+<!-- ====================== LIGHTBOX JS (at bottom) ====================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.2/dist/simple-lightbox.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Try Lightbox2 first
+        if (typeof lightbox !== 'undefined') {
+            lightbox.option({
+                resizeDuration: 200,
+                wrapAround: true,
+                disableScrolling: true
+            });
+        } else {
+            // Fallback to SimpleLightbox
+            new SimpleLightbox('.gallery-lightbox', {
+                captions: true,
+                captionSelector: 'self',
+                captionType: 'attr',
+                captionsData: 'title',
+                captionPosition: 'bottom',
+                captionDelay: 250
+            });
+        }
+    });
+</script>
 
 <?php include 'includes/footer.php'; ?>
