@@ -250,7 +250,7 @@ $logo_path = $contact_data['logo'];
             var email = $form.find('input[name="email"]').val();
 
             $.ajax({
-                url: $form.attr('action'), // subscribe.php
+                url: $form.attr('action'), 
                 type: 'POST',
                 data: { email: email },
                 dataType: 'json',

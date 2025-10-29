@@ -136,7 +136,7 @@ include 'includes/header.php';
                                     <h5><a href="<?php echo htmlspecialchars($box['link'] ?? '#'); ?>"><?php echo htmlspecialchars($box['title']); ?></a></h5>
                                 </div>
                                 <div class="featured-desc"><p><?php echo htmlspecialchars($box['description']); ?></p></div>
-                                <a class="ttm-btn ttm-btn-size-sm ttm-btn-style-border ttm-btn-color-skincolor mt-15" href="<?php echo htmlspecialchars($box['link'] ?? '#'); ?>">Learn More</a>
+                                <!-- <a class="ttm-btn ttm-btn-size-sm ttm-btn-style-border ttm-btn-color-skincolor mt-15" href="<?php echo htmlspecialchars($box['link'] ?? '#'); ?>">Learn More</a> -->
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -172,7 +172,7 @@ include 'includes/header.php';
                                             </ul>
                                         </div>
                                     <?php endif; ?>
-                                    <a class="ttm-btn ttm-btn-size-md ttm-btn-style-fill ttm-btn-color-skincolor mt-20" href="/book">Book Now</a>
+                                    <a class="ttm-btn ttm-btn-size-md ttm-btn-style-fill ttm-btn-color-skincolor mt-20" href="/appointment">Book Now</a>
                                 </div>
                             </div>
                         </section>
@@ -192,7 +192,7 @@ include 'includes/header.php';
                             <?php endforeach; ?>
                         </ul>
                     </aside>
-                    <aside class="widget widget-download mb-30">
+                    <!-- <aside class="widget widget-download mb-30">
                         <ul class="download">
                             <li>
                                 <span class="ttm-fileicon position-relative ttm-textcolor-skincolor"><i class="fa fa-file-pdf-o"></i></span>
@@ -202,12 +202,12 @@ include 'includes/header.php';
                                 </div>
                             </li>
                         </ul>
-                    </aside>
-                    <aside class="widget widget_media_image res-991-text-center">
+                    </aside> -->
+                    <!-- <aside class="widget widget_media_image res-991-text-center">
                         <div class="banner-img-box">
                             <img class="img-fluid lazyload" src="<?php echo imgUrl('images/sidebar-right-banner1.jpg'); ?>" alt="sidebar">
                         </div>
-                    </aside>
+                    </aside> -->
                 </div>
             </div>
         </div>
