@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['email'])) {
    1. Validate & dedupe email
    -------------------------------------------------------------- */
 $email = trim($_POST['email']);
-$subscribe_date = date('F j, Y');   // October 29, 2025
+$subscribe_date = date('F j, Y');  
 
 if (empty($email)) {
     $response['message'] = 'Please enter an email address.';
