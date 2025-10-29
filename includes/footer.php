@@ -242,30 +242,40 @@ $logo_path = $contact_data['logo'];
 
 <!-- AJAX handler for subscription form -->
 <script>
-    $(document).ready(function() {
-        $('#subscribe-form').on('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-            var $form = $(this);
-            var $msgDiv = $('#subscribe-msg');
-            var email = $form.find('input[name="email"]').val();
+$(document).ready(function () {
+    $('#subscribe-form').on('submit', function (e) {
+        e.preventDefault();
+        var $form   = $(this);
+        var $msg    = $('#subscribe-msg');
+        var email   = $form.find('input[name="email"]').val().trim();
 
-            $.ajax({
-                url: $form.attr('action'), 
-                type: 'POST',
-                data: { email: email },
-                dataType: 'json',
-                success: function(response) {
-                    $msgDiv.html('<div class="alert alert-' + (response.success ? 'success' : 'danger') + '">' + response.message + '</div>');
-                    if (response.success) {
-                        $form.find('input[name="email"]').val(''); // Clear input on success
-                    }
-                },
-                error: function() {
-                    $msgDiv.html('<div class="alert alert-danger">An error occurred. Please try again later.</div>');
-                }
-            });
+        if (!email) {
+            $msg.html('<div class="alert alert-danger">Enter an email.</div>');
+            return;
+        }
+
+        $.ajax({
+            url: $form.attr('action'),
+            type: 'POST',
+            data: { email: email },
+            dataType: 'json',
+            beforeSend: function () {
+                $msg.html('<div class="alert alert-info">Subscribing…</div>');
+            },
+            success: function (resp) {
+                $msg.html(
+                    '<div class="alert alert-' + (resp.success ? 'success' : 'danger') + '">' +
+                    resp.message +
+                    '</文字></div>'
+                );
+                if (resp.success) $form[0].reset();
+            },
+            error: function () {
+                $msg.html('<div class="alert alert-danger">Network error.</div>');
+            }
         });
     });
+});
 </script>
 <!-- Javascript end-->
 
