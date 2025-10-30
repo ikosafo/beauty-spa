@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ip_address = $_SERVER['REMOTE_ADDR'] ?? 'Unknown'; // Capture IP address
 
     // Basic validation
-    if (empty($user_name) || empty($user_email) || empty($user_phone) || empty($service_id) || empty($appointment_date) || empty($time_slot)) {
+    if (empty($user_name) || empty($user_phone) || empty($service_id) || empty($appointment_date) || empty($time_slot)) {
         $error_message = 'All fields are required.';
     } elseif (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
         $error_message = 'Invalid email address.';
@@ -242,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                                 <div class="form-group">
                                     <label for="user_email">Email Address</label>
-                                    <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Enter your email" value="<?php echo isset($_POST['user_email']) ? htmlspecialchars($_POST['user_email']) : ''; ?>" required>
+                                    <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Enter your email" value="<?php echo isset($_POST['user_email']) ? htmlspecialchars($_POST['user_email']) : ''; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="user_phone">Phone Number</label>

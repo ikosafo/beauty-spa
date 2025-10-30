@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                          "Golden View Therapeutic Clinik and Spa";
 
             global $admin_phone;
-            sendSMSMessage($admin_phone, $admin_sms, 'Sebson');
+            sendSMSMessage($admin_phone, $admin_sms, 'GoldenView');
 
             // === 2. CUSTOMER SMS ===
             $customer_sms = "Thank you, {$customer_info['name']}!\n" .
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                             "We will contact you soon.\n" .
                             "Golden View Therapeutic Clinik and Spa";
 
-            sendSMSMessage($customer_info['phone'], $customer_sms, 'Sebson');
+            sendSMSMessage($customer_info['phone'], $customer_sms, 'GoldenView');
         } else {
             error_log("Order insert failed: " . $mysqli->error);
         }
@@ -247,7 +247,7 @@ include 'includes/header.php';
                                     </div>
                                     <div class="form-group">
                                         <label for="customer_email">Email Address *</label>
-                                        <input type="email" class="form-control" id="customer_email" name="customer_email" required>
+                                        <input type="email" class="form-control" id="customer_email" name="customer_email">
                                     </div>
                                     <div class="form-group">
                                         <label for="customer_phone">Phone Number *</label>

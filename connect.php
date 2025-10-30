@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         "Golden View Therapeutic Clinik and Spa";
 
             global $admin_phone;
-            sendSMSMessage($admin_phone, $sms_text, 'Sebson');
+            sendSMSMessage($admin_phone, $sms_text, 'GoldenView');
 
             // Clear form data on success
             $form_data = ['name' => '', 'email' => '', 'subject' => '', 'message' => ''];
