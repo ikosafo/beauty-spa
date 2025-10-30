@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php'; // Includes DB, SMS function, $three_numbers, $admin_phone
+require_once 'config.php'; // Includes DB, SMS function, $five_numbers, $admin_phone
 
 /* ==============================================================
    FETCH SHOP DATA
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                 $items_list_full .= "\n• {$item['name']}\n  x{$item['quantity']} @ GHS " . number_format($item['price'], 2) . " = GHS " . number_format($line_total, 2);
             }
 
-            // === 1. SMS TO ALL 3 RECIPIENTS (Admin + Manager + Staff) ===
+            // === 1. SMS TO ALL 5 RECIPIENTS (Admin + 4 others) ===
             $admin_sms = "NEW ORDER #{$order_id}\n" .
                          "Customer: {$customer_info['name']}\n" .
                          "Phone: {$customer_info['phone']}\n" .
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                          "Time: " . date('M j, Y g:i A') . "\n" .
                          "Golden View Therapeutic Clinique and Spa";
 
-            $sms_result = sendSMSMessage($three_numbers, $admin_sms, 'GoldenView');
+            $sms_result = sendSMSMessage($five_numbers, $admin_sms, 'GoldenView');
 
             if (!$sms_result['success']) {
                 error_log("Admin SMS failed for: " . implode(', ', $sms_result['failed']));
@@ -223,7 +223,7 @@ include 'includes/header.php';
                                             <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($product['product_name']); ?>">
                                             <input type="hidden" name="product_price" value="<?php echo $product['product_price']; ?>">
                                             <div class="input-group mb-15">
-                                                <input type="number" name="quantity" class="form-control quantity-input" value="1" min="1">
+                                                <input type="number" name="quantity" class="form-control quantity-form-control" value="1" min="1">
                                                 <button type="submit" class="ttm-btn ttm-btn-size-sm ttm-btn-style-fill ttm-btn-color-skincolor add-to-cart-btn">Add to Cart</button>
                                             </div>
                                         </form>

@@ -1,7 +1,6 @@
 <?php
 require_once './config.php';  
 
-// === Contact Data ===
 $query = "SELECT `logo`, `email`, `phone1`, `address`, `working_hours`, facebook, x, linkedin, instagram 
           FROM ws_contact WHERE id = 1";
 $result = $mysqli->query($query);
@@ -36,16 +35,11 @@ $logo_path = $contact_data['logo'];
     .widget-services.ttm-service-list ul li { margin: 8px 0 !important; padding: 0; }
     .widget-services.ttm-service-list ul li a { font-size: 13px; color: #e0b670; line-height: 1.2; }
 
-    .alert {
-        padding: 10px; margin-top: 10px; border-radius: 4px;
-        font-size: 14px; text-align: center;
-    }
+    .alert { padding: 10px; margin-top: 10px; border-radius: 4px; font-size: 14px; text-align: center; }
     .alert-success { background-color: #dff0d8; border-color: #d6e9c6; color: #3c763d; }
     .alert-danger { background-color: #f2dede; border-color: #ebccd1; color: #a94442; }
-    .alert-info { background-color: #d9edf7; border-color: #bce8f1; color: #31708f; }
 </style>
 
-<!--footer start-->
 <footer class="footer widget-footer clearfix">
     <div class="first-footer">
         <div class="container">
@@ -75,7 +69,6 @@ $logo_path = $contact_data['logo'];
     <div class="second-footer ttm-textcolor-white">
         <div class="container">
             <div class="row">
-                <!-- About -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 widget-area">
                     <div class="widget widget_text clearfix">
                         <h3 class="widget-title">About Golden View</h3>
@@ -87,7 +80,6 @@ $logo_path = $contact_data['logo'];
                     </div>
                 </div>
 
-                <!-- Services -->
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 widget-area">
                     <div class="widget widget_text clearfix">
                         <h3 class="widget-title">Our Services</h3>
@@ -110,7 +102,6 @@ $logo_path = $contact_data['logo'];
                     </div>
                 </div>
 
-                <!-- Contact -->
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 widget-area">
                     <div class="widget flicker_widget clearfix">
                         <h3 class="widget-title">Get In Touch</h3>
@@ -138,7 +129,6 @@ $logo_path = $contact_data['logo'];
         </div>
     </div>
 
-    <!-- Copyright -->
     <div class="bottom-footer-text">
         <div class="container">
             <div class="row copyright">
@@ -169,12 +159,10 @@ $logo_path = $contact_data['logo'];
         </div>
     </div>
 </footer>
-<!--footer end-->
 
 <a id="totop" href="#top"><i class="fa fa-angle-up"></i></a>
 </div>
 
-<!-- JavaScript -->
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-migrate-3.4.1.min.js"></script>
 <script src="js/tether.min.js"></script>
@@ -191,7 +179,6 @@ $logo_path = $contact_data['logo'];
 <script src="revolution/js/rs6.min.js"></script>
 <script src="revolution/js/slider.js"></script>
 
-<!-- AJAX Subscription Handler -->
 <script>
 $(document).ready(function () {
     $('#subscribe-form').on('submit', function (e) {

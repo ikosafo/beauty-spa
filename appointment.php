@@ -20,7 +20,7 @@ if (empty($services)) {
 }
 
 // Fetch available time slots
-$query = "SELECT time_range FROM ws_contact1 WHERE type = 'timeslot' ORDER BY slot_order";
+$query = "SELECT time_range FROM ws_contact1 WHERE type = 'timeslots' ORDER BY slot_order";
 $result = $mysqli->query($query);
 $timeslots = [];
 if ($result) {
@@ -71,7 +71,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = "INSERT INTO ws_appointments (user_name, user_email, user_phone, service_id, appointment_date, time_slot, notes, ip_address) 
                   VALUES ('$user_name', '$user_email', '$user_phone', $service_id, '$appointment_date', '$time_slot', '$notes', '$ip_address')";
         if ($mysqli->query($query)) {
+            $appointment_id = $mysqli->insert_id;
             $success_message = 'Your appointment has been booked successfully! We will contact you to confirm.';
+
+            // SEND SMS TO ALL FIVE NUMBERS
+            $sms = "NEW APPOINTMENT #{$appointment_id}\n" .
+                   "Name: {$user_name}\n" .
+                   "Phone: {$user_phone}\n" .
+                   "Email: {$user_email}\n" .
+                   "Service ID: {$service_id}\n" .
+                   "Date: {$appointment_date}\n" .
+                   "Time: {$time_slot}\n" .
+                   "Notes: " . (empty($notes) ? '—' : $notes) . "\n" .
+                   "Time: " . date('M j, Y g:i A') . "\n" .
+                   "Golden View Therapeutic Clinique and Spa";
+
+            $sms_result = sendSMSMessage($five_numbers, $sms, 'GoldenView');
+
+            if (!$sms_result['success']) {
+                error_log('Appointment SMS failed for: ' . implode(', ', $sms_result['failed']));
+            } else {
+                error_log('Appointment SMS sent to: ' . implode(', ', $sms_result['sent']));
+            }
         } else {
             $error_message = 'An error occurred while booking your appointment. Please try again.';
         }
@@ -89,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         background: url('<?php echo htmlspecialchars(URLROOT . '/cms/images/bg-image/light-spa-bg.jpg'); ?>') no-repeat center center;
         background-size: cover;
         padding: 80px 0;
-        background-color: #f8f6f4; /* Fallback color */
+        background-color: #f8f6f4;
     }
     .appointment-form-container {
         background: #ffffff;
@@ -165,7 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         font-family: 'Poppins', sans-serif;
         color: #666;
     }
-    /* Flatpickr Customization */
     .flatpickr-calendar {
         font-family: 'Poppins', sans-serif;
         border-radius: 12px;
@@ -185,34 +205,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         background: #f8f6f4;
     }
     @media (max-width: 767px) {
-        .appointment-form-container {
-            padding: 30px;
-        }
-        .appointment-section {
-            padding: 50px 0;
-        }
-        .appointment-form h2 {
-            font-size: 28px;
-        }
+        .appointment-form-container { padding: 30px; }
+        .appointment-section { padding: 50px 0; }
+        .appointment-form h2 { font-size: 28px; }
     }
     @media (max-width: 575px) {
-        .appointment-form-container {
-            padding: 20px;
-        }
-        .appointment-form .form-control {
-            font-size: 14px;
-            padding: 12px;
-        }
-        .appointment-form .ttm-btn {
-            font-size: 14px;
-            padding: 12px;
-        }
+        .appointment-form-container { padding: 20px; }
+        .appointment-form .form-control { font-size: 14px; padding: 12px; }
+        .appointment-form .ttm-btn { font-size: 14px; padding: 12px; }
     }
 </style>
 
-<!--site-main start-->
 <div class="site-main">
-    <!-- appointment-section -->
     <section class="ttm-row appointment-section clearfix">
         <div class="container">
             <div class="row">
@@ -275,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="notes">Additional Notes (Optional)</label>
+                                    <label for "notes">Additional Notes (Optional)</label>
                                     <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Any special requests or notes"><?php echo isset($_POST['notes']) ? htmlspecialchars($_POST['notes']) : ''; ?></textarea>
                                 </div>
                                 <button type="submit" class="ttm-btn ttm-btn-size-md ttm-btn-style-fill ttm-btn-color-skincolor">Book Appointment</button>
@@ -286,13 +290,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </section>
-    <!-- appointment-section end -->
-</div><!--site-main end-->
+</div>
 
-<!-- Add Flatpickr JS and Form Reset Script -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    // Initialize Flatpickr
     flatpickr("#appointment_date", {
         minDate: "today",
         dateFormat: "Y-m-d",
@@ -302,7 +303,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     });
 
-    // Reset form after successful submission
     <?php if ($success_message): ?>
         document.getElementById('appointment-form').reset();
     <?php endif; ?>

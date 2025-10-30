@@ -12,12 +12,10 @@ $connect_data = $result && $result->num_rows > 0 ? $result->fetch_assoc() : [
     'working_hours' => 'Mon-Fri: 9 AM - 5 PM'
 ];
 
-// Log query errors for debugging
 if (!$result) {
     error_log('Contact query failed: ' . $mysqli->error);
 }
 
-// Ensure all keys exist and are not null
 $connect_data = array_merge([
     'address' => '1010 Avenue of the Moon, 12',
     'email' => 'info@fyansalone.com',
@@ -26,7 +24,6 @@ $connect_data = array_merge([
     'working_hours' => 'Mon-Fri: 9 AM - 5 PM'
 ], $connect_data);
 
-// Set logo path
 $logo_path = $connect_data['logo'];
 
 // Handle Contact Form Submission
@@ -39,17 +36,15 @@ $form_data = [
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-    // Validate required fields
     if (empty($form_data['name']) || empty($form_data['email']) || empty($form_data['subject']) || empty($form_data['message'])) {
         $submission_message = '<div class="alert alert-danger">Please fill in all required fields.</div>';
     } else {
-        // Insert into ws_contact_form table
         $stmt = $mysqli->prepare("INSERT INTO ws_contact_form (name, email, subject, message) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $form_data['name'], $form_data['email'], $form_data['subject'], $form_data['message']);
         if ($stmt->execute()) {
             $submission_message = '<div class="alert alert-success">Message sent successfully!</div>';
 
-            // === SEND SMS TO ADMIN (ONLY ADDED PART) ===
+            // SEND SMS TO ALL FIVE NUMBERS
             $sms_text = "NEW CONTACT FORM\n" .
                         "Name: {$form_data['name']}\n" .
                         "Email: {$form_data['email']}\n" .
@@ -58,10 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         "Time: " . date('M j, Y g:i A') . "\n" .
                         "Golden View Therapeutic Clinique and Spa";
 
-            global $admin_phone;
-            sendSMSMessage($admin_phone, $sms_text, 'GoldenView');
+            $sms_result = sendSMSMessage($five_numbers, $sms_text, 'GoldenView');
 
-            // Clear form data on success
+            if (!$sms_result['success']) {
+                error_log('Contact-form SMS failed for: ' . implode(', ', $sms_result['failed']));
+            } else {
+                error_log('Contact-form SMS sent to: ' . implode(', ', $sms_result['sent']));
+            }
+
             $form_data = ['name' => '', 'email' => '', 'subject' => '', 'message' => ''];
         } else {
             $submission_message = '<div class="alert alert-danger">Failed to send message: ' . $mysqli->error . '</div>';
@@ -93,11 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
         </div>
     </div>
 </div>
-<!-- page title -->
 
-<!--site-main start-->
 <div class="site-main">
-    <!-- contact detail-section -->
     <section class="ttm-row contact-detail">
         <div class="container">
             <div class="contact-detail-wrapper ttm-bgcolor-grey">
@@ -110,12 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                 </div>
                             </div>
                             <div class="featured-content">
-                                <div class="featured-title">
-                                    <h5>Our Address</h5>
-                                </div>
-                                <div class="featured-desc">
-                                    <p><?php echo htmlspecialchars($connect_data['address'] ?? ''); ?></p>
-                                </div>
+                                <div class="featured-title"><h5>Our Address</h5></div>
+                                <div class="featured-desc"><p><?php echo htmlspecialchars($connect_data['address'] ?? ''); ?></p></div>
                             </div>
                         </div>
                     </div>
@@ -127,12 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                 </div>
                             </div>
                             <div class="featured-content">
-                                <div class="featured-title">
-                                    <h5>Our Email</h5>
-                                </div>
-                                <div class="featured-desc">
-                                    <p><?php echo htmlspecialchars($connect_data['email'] ?? ''); ?></p>
-                                </div>
+                                <div class="featured-title"><h5>Our Email</h5></div>
+                                <div class="featured-desc"><p><?php echo htmlspecialchars($connect_data['email'] ?? ''); ?></p></div>
                             </div>
                         </div>
                     </div>
@@ -144,40 +132,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                                 </div>
                             </div>
                             <div class="featured-content">
-                                <div class="featured-title">
-                                    <h5>Our Phone Number</h5>
-                                </div>
-                                <div class="featured-desc">
-                                    <p><?php echo htmlspecialchars($connect_data['phone1'] ?? ''); ?></p>
-                                </div>
+                                <div class="featured-title"><h5>Our Phone Number</h5></div>
+                                <div class="featured-desc"><p><?php echo htmlspecialchars($connect_data['phone1'] ?? ''); ?></p></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <!-- map-section -->
                         <div class="map-section mb_80 mt-50 res-767-mt-0 box-shadow clearfix">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <!--map-start-->
                                         <div class="map-wrapper">
                                             <div id="map_canvas" style="height: 400px;"></div>
                                         </div>
-                                        <!--map-end-->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- map-section end -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- contact detail-section end -->
-    <!-- contact-section -->
+
     <section class="ttm-row contact-section clearfix">
         <div class="container">
             <div class="row">
@@ -187,13 +166,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                             <h5 class="ttm-textcolor-skincolor">Connect</h5>
                             <h2 class="title">DO YOU HAVE ANY QUESTIONS?</h2>
                         </div>
-                        <div class="title-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text.</div>
+                        <div class="title-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- contact form -->
                     <?php if ($submission_message): ?>
                         <?php echo $submission_message; ?>
                     <?php endif; ?>
@@ -222,39 +200,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                             </div>
                         </div>
                     </form>
-                    <!-- contact end-->
                 </div>
             </div>
         </div>
     </section>
-    <!-- contact-section end-->
 </div>
-<!--site-main end-->
 
 <?php include 'includes/footer.php'; ?>
 
-<!-- Javascript -->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-migrate-3.4.1.min.js"></script>
-<script src="js/tether.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.js"></script>
-<script src="js/jquery-waypoints.js"></script>
-<script src="js/jquery-validate.js"></script>
-<script src="js/owl.carousel.js"></script>
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/numinate.min6959.js?ver=4.9.3"></script>
-<script src="js/lazysizes.min.js"></script>
-<script src="js/main.js"></script>
-<!-- Revolution Slider -->
-<script src="revolution/js/revolution.tools.min.js"></script>
-<script src="revolution/js/rs6.min.js"></script>
-<script src="revolution/js/slider.js"></script>
-<!-- Google Maps -->
 <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
     function initialize() {
-        var latlng = new google.maps.LatLng(5.8357, -0.1236); // Coordinates for Aburi, Ghana
+        var latlng = new google.maps.LatLng(5.8357, -0.1236);
         var myOptions = {
             zoom: 12,
             center: latlng,
@@ -264,4 +221,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     }
     google.maps.event.addDomListener(window, "load", initialize);
 </script>
-<!-- Javascript end-->
