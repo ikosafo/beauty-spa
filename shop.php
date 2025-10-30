@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php'; // <-- ONLY ONE INCLUDE
+require_once 'config.php'; // Includes DB, SMS function, $three_numbers, $admin_phone
 
 /* ==============================================================
    FETCH SHOP DATA
@@ -54,9 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
     ];
     $cart_items = json_decode($_POST['cart_items'] ?? '[]', true) ?? [];
 
+    // Validate
     if (empty($customer_info['name']) || empty($customer_info['email']) || empty($customer_info['phone']) || empty($cart_items)) {
         $order_success = false;
     } else {
+        // Insert Order
         $stmt = $mysqli->prepare("INSERT INTO ws_orders (customer_name, customer_email, customer_phone, cart_items) VALUES (?, ?, ?, ?)");
         $cart_json = json_encode($cart_items);
         $stmt->bind_param("ssss", $customer_info['name'], $customer_info['email'], $customer_info['phone'], $cart_json);
@@ -65,39 +67,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
             $order_id = $mysqli->insert_id;
             $order_success = true;
 
-            // Calculate total
-            foreach ($cart_items as $item) {
-                $total_amount += $item['price'] * $item['quantity'];
-            }
+            // === CALCULATE TOTAL & BUILD ITEM LISTS ===
+            $total_amount = 0;
+            $items_list_short = "";  // For admin SMS
+            $items_list_full  = "";  // For customer SMS (with prices)
 
-            // Build items list
-            $items_list = "";
             foreach ($cart_items as $item) {
                 $line_total = $item['price'] * $item['quantity'];
-                $items_list .= "\n• {$item['name']} (x{$item['quantity']}) = GHS " . number_format($line_total, 2);
+                $total_amount += $line_total;
+
+                // Short version (admin)
+                $items_list_short .= "\n• {$item['name']} (x{$item['quantity']})";
+
+                // Full version (customer)
+                $items_list_full .= "\n• {$item['name']}\n  x{$item['quantity']} @ GHS " . number_format($item['price'], 2) . " = GHS " . number_format($line_total, 2);
             }
 
-            // === 1. ADMIN SMS ===
+            // === 1. SMS TO ALL 3 RECIPIENTS (Admin + Manager + Staff) ===
             $admin_sms = "NEW ORDER #{$order_id}\n" .
                          "Customer: {$customer_info['name']}\n" .
                          "Phone: {$customer_info['phone']}\n" .
                          "Email: {$customer_info['email']}\n" .
-                         "Items:{$items_list}\n" .
+                         "Items:{$items_list_short}\n" .
                          "TOTAL: GHS " . number_format($total_amount, 2) . "\n" .
                          "Time: " . date('M j, Y g:i A') . "\n" .
                          "Golden View Therapeutic Clinique and Spa";
 
-            global $admin_phone;
-            sendSMSMessage($admin_phone, $admin_sms, 'GoldenView');
+            $sms_result = sendSMSMessage($three_numbers, $admin_sms, 'GoldenView');
 
-            // === 2. CUSTOMER SMS ===
+            if (!$sms_result['success']) {
+                error_log("Admin SMS failed for: " . implode(', ', $sms_result['failed']));
+            } else {
+                error_log("Admin SMS sent to: " . implode(', ', $sms_result['sent']));
+            }
+
+            // === 2. CUSTOMER SMS (WITH FULL ITEM BREAKDOWN) ===
             $customer_sms = "Thank you, {$customer_info['name']}!\n" .
-                            "Order #{$order_id} confirmed.\n" .
-                            "Total: GHS " . number_format($total_amount, 2) . "\n" .
+                            "Order #{$order_id} Confirmed\n\n" .
+                            "Items:{$items_list_full}\n\n" .
+                            "TOTAL: GHS " . number_format($total_amount, 2) . "\n" .
                             "We will contact you soon.\n" .
                             "Golden View Therapeutic Clinique and Spa";
 
-            sendSMSMessage($customer_info['phone'], $customer_sms, 'GoldenView');
+            $cust_result = sendSMSMessage($customer_info['phone'], $customer_sms, 'GoldenView');
+
+            if (!$cust_result['success']) {
+                error_log("Customer SMS failed: " . $customer_info['phone']);
+            }
         } else {
             error_log("Order insert failed: " . $mysqli->error);
         }
@@ -153,7 +169,7 @@ include 'includes/header.php';
                         <?php endforeach; ?>
                         <li><strong>Total: GHS <?php echo number_format($total_amount, 2); ?></strong></li>
                     </ul>
-                    <p><strong>SMS sent to you and admin.</strong></p>
+                    <p><strong>SMS sent to you and the team.</strong></p>
                     <button type="button" class="close" data-dismiss="alert">×</button>
                 </div>
             <?php endif; ?>
