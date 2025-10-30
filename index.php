@@ -36,7 +36,7 @@ if (empty($slides)) {
             'background_media' => 'images/slides/slider-mainbg-001.jpg',
             'subtitle' => 'Best Place for',
             'heading1' => 'THE BEST TIME',
-            'heading2' => 'TO RELAX WITH SYLIN',
+            'heading2' => 'TO RELAX WITH GOLDEN VIEW',
             'description' => 'Professional Beauty Center Since 1919.',
             'button_text' => 'Get An Appointment!',
             'button_url' => '#'
@@ -46,7 +46,7 @@ if (empty($slides)) {
             'background_media' => 'images/slides/slider-mainbg-002.jpg',
             'subtitle' => 'Best Place for',
             'heading1' => 'THE BEST TIME',
-            'heading2' => 'TO RELAX WITH SYLIN',
+            'heading2' => 'TO RELAX WITH GOLDEN VIEW',
             'description' => 'Professional Beauty Center Since 1919.',
             'button_text' => 'Watch Video',
             'button_url' => 'https://youtu.be/7e90gBu4pas'

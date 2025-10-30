@@ -37,7 +37,7 @@ if (empty($shop_section)) {
         'type' => 'section',
         'image' => 'images/shop/shop-bg.jpg',
         'subtitle' => 'Discover Our Products',
-        'title' => 'Sylin Beauty Shop',
+        'title' => 'Golden View Therapeutic Clinik and Spa',
         'description' => 'Explore our curated selection of premium beauty and spa products, designed to enhance your wellness routine.'
     ];
 }

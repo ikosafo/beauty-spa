@@ -80,7 +80,7 @@ $logo_path = $contact_data['logo'];
                     <div class="widget widget_text clearfix">
                         <h3 class="widget-title">About Golden View</h3>
                         <div class="textwidget widget-text">
-                            <p class="pb-10 res-767-p-0">Golden View Therapeutic Clinique and Spa has been a sanctuary for holistic wellness, with 7 global locations offering transformative treatments.</p>
+                            <p class="pb-10 res-767-p-0">Golden View Therapeutic Clinik and Spa has been a sanctuary for holistic wellness, with 7 global locations offering transformative treatments.</p>
                             <p class="pb-10 res-767-p-0">Our expert therapists use premium, natural products to rejuvenate your body and soul.</p>
                             <a class="ttm-color-skincolor" href="/about">- Discover Our Story</a>
                         </div>
@@ -144,7 +144,7 @@ $logo_path = $contact_data['logo'];
             <div class="row copyright">
                 <div class="col-md-9">
                     <div class="ttm-textcolor-white">
-                        <span>© <?php echo date('Y') ?> <a class="ttm-textcolor-skincolor" href="#">Golden View Therapeutic Clinique and Spa</a>. All rights reserved.</span>
+                        <span>© <?php echo date('Y') ?> <a class="ttm-textcolor-skincolor" href="#">Golden View Therapeutic Clinik and Spa</a>. All rights reserved.</span>
                     </div>
                 </div>
                 <div class="col-md-3">

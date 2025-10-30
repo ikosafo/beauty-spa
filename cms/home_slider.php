@@ -28,7 +28,7 @@ if (!$result) {
             'background_media' => $row['background_media'] ?? 'images/slides/slider-mainbg-001.jpg',
             'subtitle' => $row['subtitle'] ?? 'Best Place for',
             'heading1' => $row['heading1'] ?? 'THE BEST TIME',
-            'heading2' => $row['heading2'] ?? 'TO RELAX WITH SYLIN',
+            'heading2' => $row['heading2'] ?? 'TO RELAX WITH GOLDEN VIEW',
             'description' => $row['description'] ?? 'Professional Beauty Center Since 1919.',
             'button_text' => $row['button_text'] ?? 'Get An Appointment!',
             'button_url' => $row['button_url'] ?? '#'
@@ -42,7 +42,7 @@ if (empty($slides)) {
             'background_media' => 'images/slides/slider-mainbg-001.jpg',
             'subtitle' => 'Best Place for',
             'heading1' => 'THE BEST TIME',
-            'heading2' => 'TO RELAX WITH SYLIN',
+            'heading2' => 'TO RELAX WITH GOLDEN VIEW',
             'description' => 'Professional Beauty Center Since 1919.',
             'button_text' => 'Get An Appointment!',
             'button_url' => '#'
@@ -52,7 +52,7 @@ if (empty($slides)) {
             'background_media' => 'images/slides/slider-mainbg-002.jpg',
             'subtitle' => 'Best Place for',
             'heading1' => 'THE BEST TIME',
-            'heading2' => 'TO RELAX WITH SYLIN',
+            'heading2' => 'TO RELAX WITH GOLDEN VIEW',
             'description' => 'Professional Beauty Center Since 1919.',
             'button_text' => 'Explore Now',
             'button_url' => '/services'

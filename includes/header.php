@@ -44,9 +44,9 @@ $logo_path = $contact_data['logo'];
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="HTML5 Template, Sylin - Beauty salon and Spa HTML Template, html template, wordpress theme, Fyna - Beauty salon and Spa WordPress Theme, Sylin - Beauty Salon and Spa HTML Template, unlimited colors available, ui/ux, ui/ux design, best html template, html template, html, woocommerce, shopify, prestashop, eCommerce, react js, react template, JavaScript, best CSS theme, css3, elementor theme, latest premium themes 2023, latest premium templates 2024, Preyan Technosys Pvt.Ltd, cymol themes, themetech mount, Web 3.0, multi-theme, website theme and template, woocommerce, bootstrap template, web templates, responsive theme, beauty parlor, beauty salon, beauty shop, cosmetic store, spa and salon, hospitality, spa salon, haircut salon, barber shop, beauty salon, nails art, hairstyle, hair stylist, makeup artist, hair dresser, beauty tips, beauty care">
-    <meta name="description" content="Sylin - Beauty salon and Spa HTML Template">
-    <meta name="author" content="https://www.themetechmount.com/">
+    <meta name="keywords" content="Golden View Therapeutic Clinik and Spa, Beauty, Spa, Wellness, Massage, Skin Care, Hair Services">
+    <meta name="description" content="Golden View Therapeutic Clinik and Spa - Your destination for relaxation and rejuvenation. Explore our services and shop for premium beauty products.">
+    <meta name="author" content="https://www.sebson.org/">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Golden View Therapeutic Clinique & SPA</title>
 
@@ -135,7 +135,7 @@ $logo_path = $contact_data['logo'];
                                         <div id="site-navigation" class="site-navigation d-flex flex-row">
                                             <div class="site-branding me-auto">
                                                 <!-- site-branding -->
-                                                <a class="home-link" href="/" title="Sylin Spa" rel="home">
+                                                <a class="home-link" href="/" title="Golden View Therapeutic Clinik and Spa" rel="home">
                                                     <img id="logo-img" class="img-center lazyload" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $logo_path); ?>" alt="logo">
                                                 </a>
                                                 <!-- site-branding end -->                   
