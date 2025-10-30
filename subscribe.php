@@ -49,7 +49,7 @@ try {
     }
 
     // ---- SEND SMS (admin only) -----------------------------------------
-    $sms_text = "New subscriber!\nEmail: {$email}\nSubscribed on: {$subscribe_date}\n\nGolden View Therapeutic Clinik and Spa.";
+    $sms_text = "New subscriber!\nEmail: {$email}\nSubscribed on: {$subscribe_date}\n\nGolden View Therapeutic Clinique and Spa.";
     global $admin_phone;                     // <-- get admin phone from config
     $sms_ok = sendSMSMessage($admin_phone, $sms_text, 'Sebson');
 

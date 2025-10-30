@@ -1,5 +1,5 @@
 <?php
-$title = "Privacy Policy - Golden View Therapeutic Clinik and Spa";
+$title = "Privacy Policy - Golden View Therapeutic Clinique and Spa";
 include 'includes/header.php';
 ?>
 
@@ -27,7 +27,7 @@ include 'includes/header.php';
                 <div class="ttm-single-content">
                     <p class="mb-20"><strong>Last Updated:</strong> October 29, 2025</p>
 
-                    <p>Golden View Therapeutic Clinik and Spa ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="<?php echo URLROOT; ?>"><?php echo $_SERVER['HTTP_HOST']; ?></a>, subscribe to our newsletter, or interact with us via WhatsApp or other services.</p>
+                    <p>Golden View Therapeutic Clinique and Spa ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="<?php echo URLROOT; ?>"><?php echo $_SERVER['HTTP_HOST']; ?></a>, subscribe to our newsletter, or interact with us via WhatsApp or other services.</p>
 
                     <h3 class="mt-30 mb-15">1. Information We Collect</h3>
                     <p>We collect the following information:</p>

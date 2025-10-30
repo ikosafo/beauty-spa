@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                         "Subject: {$form_data['subject']}\n" .
                         "Message: " . substr($form_data['message'], 0, 100) . (strlen($form_data['message']) > 100 ? '...' : '') . "\n" .
                         "Time: " . date('M j, Y g:i A') . "\n" .
-                        "Golden View Therapeutic Clinik and Spa";
+                        "Golden View Therapeutic Clinique and Spa";
 
             global $admin_phone;
             sendSMSMessage($admin_phone, $sms_text, 'GoldenView');

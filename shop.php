@@ -25,7 +25,7 @@ if (empty($shop_section)) {
     $shop_section = [
         'image' => 'images/shop/shop-bg.jpg',
         'subtitle' => 'Discover Our Products',
-        'title' => 'Golden View Therapeutic Clinik and Spa',
+        'title' => 'Golden View Therapeutic Clinique and Spa',
         'description' => 'Explore our curated selection of premium beauty and spa products.'
     ];
 }
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                          "Items:{$items_list}\n" .
                          "TOTAL: GHS " . number_format($total_amount, 2) . "\n" .
                          "Time: " . date('M j, Y g:i A') . "\n" .
-                         "Golden View Therapeutic Clinik and Spa";
+                         "Golden View Therapeutic Clinique and Spa";
 
             global $admin_phone;
             sendSMSMessage($admin_phone, $admin_sms, 'GoldenView');
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout'])) {
                             "Order #{$order_id} confirmed.\n" .
                             "Total: GHS " . number_format($total_amount, 2) . "\n" .
                             "We will contact you soon.\n" .
-                            "Golden View Therapeutic Clinik and Spa";
+                            "Golden View Therapeutic Clinique and Spa";
 
             sendSMSMessage($customer_info['phone'], $customer_sms, 'GoldenView');
         } else {

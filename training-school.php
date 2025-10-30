@@ -23,7 +23,7 @@ if (empty($training_section)) {
         'type' => 'section',
         'image' => 'images/services/training-school.jpg',
         'subtitle' => 'Learn with Us',
-        'title' => 'Golden View Therapeutic Clinik and Spa Academy',
+        'title' => 'Golden View Therapeutic Clinique and Spa Academy',
         'description' => 'Join our professional training programs to become a certified beauty and spa specialist. Our courses cover makeup artistry, skincare, hairdressing, and more.'
     ];
 }

@@ -44,8 +44,8 @@ $logo_path = $contact_data['logo'];
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="Golden View Therapeutic Clinik and Spa, Beauty, Spa, Wellness, Massage, Skin Care, Hair Services">
-    <meta name="description" content="Golden View Therapeutic Clinik and Spa - Your destination for relaxation and rejuvenation. Explore our services and shop for premium beauty products.">
+    <meta name="keywords" content="Golden View Therapeutic Clinique and Spa, Beauty, Spa, Wellness, Massage, Skin Care, Hair Services">
+    <meta name="description" content="Golden View Therapeutic Clinique and Spa - Your destination for relaxation and rejuvenation. Explore our services and shop for premium beauty products.">
     <meta name="author" content="https://www.sebson.org/">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Golden View Therapeutic Clinique & SPA</title>
@@ -135,7 +135,7 @@ $logo_path = $contact_data['logo'];
                                         <div id="site-navigation" class="site-navigation d-flex flex-row">
                                             <div class="site-branding me-auto">
                                                 <!-- site-branding -->
-                                                <a class="home-link" href="/" title="Golden View Therapeutic Clinik and Spa" rel="home">
+                                                <a class="home-link" href="/" title="Golden View Therapeutic Clinique and Spa" rel="home">
                                                     <img id="logo-img" class="img-center lazyload" src="<?php echo htmlspecialchars(URLROOT . '/cms/' . $logo_path); ?>" alt="logo">
                                                 </a>
                                                 <!-- site-branding end -->                   
